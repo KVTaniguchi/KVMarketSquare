@@ -18,7 +18,7 @@ struct ContentView: View {
             Form {
                 Section {
                     TextField("Address", text: $mapSearch.searchTerm)
-                    .modifier(ClearButton(text: $mapSearch.searchTerm))
+                        .modifier(ClearButton(text: $mapSearch.searchTerm, results: $mapSearch.locationResults))
                 }
                 Section {
                     ForEach(mapSearch.locationResults, id: \.self) { location in
@@ -92,9 +92,11 @@ struct Detail : View {
 
 public struct ClearButton: ViewModifier {
     @Binding var text: String
+    @Binding var results: [MKLocalSearchCompletion]
 
-    public init(text: Binding<String>) {
+    public init(text: Binding<String>, results: Binding<[MKLocalSearchCompletion]>) {
         self._text = text
+        self._results = results
     }
 
     public func body(content: Content) -> some View {
@@ -105,7 +107,10 @@ public struct ClearButton: ViewModifier {
             Image(systemName: "multiply.circle.fill")
                 .foregroundColor(.secondary)
                 .opacity(text == "" ? 0 : 1)
-                .onTapGesture { self.text = "" }
+                .onTapGesture {
+                    self.text = ""
+                    self.results = []
+                }
         }
     }
 }
