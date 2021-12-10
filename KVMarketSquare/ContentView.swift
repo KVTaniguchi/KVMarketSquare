@@ -19,3 +19,16 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+// what local api is this hitting?
+// giveandgetlocal.com
+// https://giveandgetlocal.com/?address=1384%20Laurel%20Avenue%2C%20Saint%20Paul%2C%20MN%2C%20USA
+// https://giveandgetlocal.com/?address=1384 Laurel Avenue, Saint Paul, MN, USA
+
+// search field
+
+// location
+
+// geocode?
+
+//

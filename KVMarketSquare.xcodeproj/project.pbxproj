@@ -14,6 +14,8 @@
 		BD1E5CFC275B2147009587A2 /* KVMarketSquareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1E5CFB275B2147009587A2 /* KVMarketSquareTests.swift */; };
 		BD1E5D06275B2147009587A2 /* KVMarketSquareUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1E5D05275B2147009587A2 /* KVMarketSquareUITests.swift */; };
 		BD1E5D08275B2147009587A2 /* KVMarketSquareUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1E5D07275B2147009587A2 /* KVMarketSquareUITestsLaunchTests.swift */; };
+		BD1E5D15275BC9AE009587A2 /* FetchTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1E5D14275BC9AE009587A2 /* FetchTask.swift */; };
+		BD1E5D17275BCE18009587A2 /* SquareSellerSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1E5D16275BCE18009587A2 /* SquareSellerSearchResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		BD1E5D01275B2147009587A2 /* KVMarketSquareUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KVMarketSquareUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD1E5D05275B2147009587A2 /* KVMarketSquareUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVMarketSquareUITests.swift; sourceTree = "<group>"; };
 		BD1E5D07275B2147009587A2 /* KVMarketSquareUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVMarketSquareUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BD1E5D14275BC9AE009587A2 /* FetchTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTask.swift; sourceTree = "<group>"; };
+		BD1E5D16275BCE18009587A2 /* SquareSellerSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareSellerSearchResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,8 @@
 				BD1E5CEC275B2141009587A2 /* ContentView.swift */,
 				BD1E5CEE275B2146009587A2 /* Assets.xcassets */,
 				BD1E5CF0275B2146009587A2 /* Preview Content */,
+				BD1E5D14275BC9AE009587A2 /* FetchTask.swift */,
+				BD1E5D16275BCE18009587A2 /* SquareSellerSearchResult.swift */,
 			);
 			path = KVMarketSquare;
 			sourceTree = "<group>";
@@ -257,7 +263,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD1E5D15275BC9AE009587A2 /* FetchTask.swift in Sources */,
 				BD1E5CED275B2141009587A2 /* ContentView.swift in Sources */,
+				BD1E5D17275BCE18009587A2 /* SquareSellerSearchResult.swift in Sources */,
 				BD1E5CEB275B2141009587A2 /* KVMarketSquareApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
