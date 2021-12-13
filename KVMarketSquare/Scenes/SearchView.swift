@@ -13,6 +13,7 @@ import SwiftUI
 struct SearchView: View {
     @StateObject private var mapSearch = MapSearch()
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject private var appData: AppData
     
     let storeSelected: (String) -> Void
     
@@ -26,7 +27,7 @@ struct SearchView: View {
                 Section {
                     ForEach(mapSearch.locationResults, id: \.self) { location in
                         NavigationLink(destination:
-                                        SellerSearchResultsView(locationResult: location)) {
+                                        SellerSearchResultsView(locationResult: location).environmentObject(appData)) {
                                             VStack(alignment: .leading) {
                                                 Text(location.title)
                                                 Text(location.subtitle)
@@ -78,6 +79,7 @@ class AddressToCoordinateResolver : ObservableObject {
 struct SellerSearchResultsView: View {
     var locationResult : MKLocalSearchCompletion
     @StateObject private var viewModel = AddressToCoordinateResolver()
+    @EnvironmentObject private var appData: AppData
 
     init(locationResult : MKLocalSearchCompletion) {
         self.locationResult = locationResult
@@ -88,7 +90,7 @@ struct SellerSearchResultsView: View {
             if viewModel.isLoading {
                 Text("Loading...")
             } else {
-                SellerResultsListView(coordinate: viewModel.coordinate)
+                SellerResultsListView(coordinate: viewModel.coordinate)?.environmentObject(appData)
             }
         }
         .onAppear {
@@ -103,6 +105,7 @@ struct SellerSearchResultsView: View {
 
 struct SellerResultsListView: View {
     @StateObject var task: FetchTask<SellerFromCoordsResult> = FetchTask<SellerFromCoordsResult>()
+    @EnvironmentObject private var appData: AppData
     
     private let url: URL
     
@@ -130,7 +133,14 @@ struct SellerResultsListView: View {
         switch task.result {
         case .success(let model):
             List(model.data) { store in
-                Text(store.displayName)
+                Button {
+                    let sellerStore = SellerAppData(siteId: store.siteID, userId: store.ownerID, displayName: store.displayName)
+                    appData.favoriteShops.insert(sellerStore)
+                } label: {
+                    HStack {
+                        Text(store.displayName)
+                    }
+                }
             }
         case .failure(let error):
             Text(String(describing: error))

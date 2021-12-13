@@ -26,16 +26,67 @@ struct FoundationView: View {
                 }
             }
         }
-        
-        // showing search sheet
-        //  - selecting an item pops another list sheet with store search results
-        
-        //  - selecting an store item drops back down to bottom sheet and shows store buttons, circular arranged in a collection view grid, but list for now is fine
-        
-        // area showing list of selected stores - can be updated
 
         List {
             // takes in a list store ids and executes a search against them
+        }
+    }
+}
+
+struct URLLookupPayload: Codable {
+    let userSites: [SellerIdentifier]
+
+    enum CodingKeys: String, CodingKey {
+        case userSites = "user_sites"
+    }
+}
+
+struct SellerIdentifier: Codable {
+    let userID, siteID: String
+
+    enum CodingKeys: String, CodingKey {
+        case userID = "user_id"
+        case siteID = "site_id"
+    }
+}
+
+struct SavedStores {
+    
+}
+
+struct SellerStore {
+    let userId: String
+    let siteId: String
+    var url: URL?
+}
+
+// POST
+//https://www.weebly.com/app/website/api/v1/sites/urls
+
+// response
+//{
+//  "119203630": { user id
+//    "271265949680067218": { site id
+//      "url": "https://karibu-grocery-deli.square.site" url
+//    }
+//  },
+//  "124050880": {
+//    "623544097567863026": {
+//      "url": "https://x2-pastries.square.site"
+//    }
+//  }
+//}
+
+struct SellerURLsResponse {
+    let users: [User]
+    
+    struct User {
+        let userId: String
+        let site: Site
+        
+        struct Site {
+            let siteId: String
+            let url: URL
         }
     }
 }
