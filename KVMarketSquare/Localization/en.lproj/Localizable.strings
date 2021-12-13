@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  KVMarketSquare
+
+  Created by Minseo Kwon on 2021-12-13.
+  
+*/
+
+
+// Main
+"TabHomeTitle" = "Home";
+"TabSettingsTitle" = "Settings";
+
+// Home
+"HomeEmptyTitle" = "No saved stores found";
+"HomeEmptyDescription" = "Please save some stores by searching them on the top right corner.";
+
+// Search
+"SearchViewTitle" = "Market Square";
+"SearchFieldTitle" = "Search address";
