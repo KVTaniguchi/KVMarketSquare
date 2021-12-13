@@ -27,7 +27,7 @@ struct HomeView: View {
         .sheet(isPresented: $showingSearchSheet) {
             SearchView() { store in
                 
-            }
+            }.environmentObject(appData)
         }
     }
     
@@ -56,8 +56,8 @@ struct HomeView: View {
     
     private var shopsListView: some View {
         HStack {
-            ForEach(appData.favoriteShops, id: \.self) { shop in
-                FavoriteTileView(name: shop)
+            ForEach(Array(appData.favoriteShops)) { shop in
+                FavoriteTileView(name: shop.displayName ?? shop.userId)
             }
         }
     }
