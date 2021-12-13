@@ -11,6 +11,10 @@
 "TabHomeTitle" = "Home";
 "TabSettingsTitle" = "Settings";
 
+// Home
+"HomeEmptyTitle" = "No saved stores found";
+"HomeEmptyDescription" = "Please save some stores by searching them on the top right corner.";
+
 // Search
 "SearchViewTitle" = "Market Square";
 "SearchFieldTitle" = "Search address";

@@ -33,8 +33,18 @@ struct HomeView: View {
     private var contentView: some View {
         // have switch of number of saved stores here
         VStack {
-            Text("Empty State goes here")
+            Image(systemName: "tray.fill")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: UIScreen.main.bounds.width * 0.1)
+            
+            Text(Localization.key(.HomeEmptyTitle))
+                .bold()
+                .padding(.top, 16)
+            Text(Localization.key(.HomeEmptyDescription))
+                .multilineTextAlignment(.center)
         }
+        .padding(.horizontal, 32)
     }
 }
 
