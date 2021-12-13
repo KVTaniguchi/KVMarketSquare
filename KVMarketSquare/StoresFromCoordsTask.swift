@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Combine
+import SwiftUI
 
 //curl 'https://www.weebly.com/app/store/api/v1/seller-map/lat/44.9045212/lng/-93.173926?page=0&per_page=100' \
 //  -H 'Connection: keep-alive' \
@@ -22,8 +24,15 @@ import Foundation
 //  -H 'Accept-Language: en-US,en;q=0.9' \
 //  --compressed
 
-final class StoresFromCoordsController {
+
+// maybe use this another time?
+final class StoresFromCoordsController: ObservableObject {
     private let urlComponents: URLComponents
+    
+//    @StateObject var task: PLPProductsTask = PLPProductsTask(url: URL(string: "https://run.mocky.io/v3/99de5e9a-ec4d-4bf2-9f92-4589e7225f2a")!)
+    @Published var results: SellerFromCoordsResult?
+    
+    var runningTask: FetchTask<SellerFromCoordsResult>?
 
 //    'https://www.weebly.com/app/store/api/v1/seller-map/lat/44.9045212/lng/-93.173926?page=0&per_page=100'
     
@@ -41,7 +50,17 @@ final class StoresFromCoordsController {
         self.urlComponents = components
     }
     
-    private func coordinatePath(lat: Double, lon: Double) -> String {
-        "/lat/\(lat)/lng/\(lon)"
+    func search(lat: Double, lon: Double) {
+        let coordinatePath = "/lat/\(lat)/lng/\(lon)"
+        var taskComponent = urlComponents
+        taskComponent.path.append(coordinatePath)
+        
+        guard let url = taskComponent.url else {
+            assertionFailure("no url")
+            return
+        }
+        
+//        runningTask = FetchTask<SellerFromCoordsResult>(url: url)
+//        runningTask?.fetchModel()
     }
 }

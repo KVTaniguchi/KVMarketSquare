@@ -42,17 +42,11 @@ enum HTTPError: LocalizedError {
 class FetchTask<T: Decodable>: ObservableObject {
     
     private var cancellable: AnyCancellable?
-    let url: URL
-    
-    @Published var model: T?
-    @Published var error: Error?
     @Published var finished = false
     
-    init(url: URL) {
-        self.url = url
-    }
+    @Published var result: Result<T, Error>?
     
-    func fetchModel() {
+    func fetchModel(withURL url: URL) {
         guard !finished else { return }
         self.cancellable = URLSession.shared.dataTaskPublisher(for: url)
         .tryMap { output in
@@ -70,10 +64,10 @@ class FetchTask<T: Decodable>: ObservableObject {
             case .finished:
                 break
             case .failure(let error):
-                self?.error = error
+                self?.result = .failure(error)
             }
         }, receiveValue: { [weak self] model in
-            self?.model = model
+            self?.result = .success(model)
         })
     }
 }
