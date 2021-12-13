@@ -20,7 +20,7 @@ struct SearchView: View {
         NavigationView {
             Form {
                 Section {
-                    TextField("Address", text: $mapSearch.searchTerm)
+                    TextField(Localization.key(.SearchFieldTitle), text: $mapSearch.searchTerm)
                         .modifier(ClearButton(text: $mapSearch.searchTerm, results: $mapSearch.locationResults))
                 }
                 Section {
@@ -37,7 +37,7 @@ struct SearchView: View {
                     }
                 }
             }
-            .navigationTitle("Market Square")
+            .navigationTitle(Localization.key(.SearchViewTitle))
             .toolbar {
                 Button(action: {
                     dismiss()

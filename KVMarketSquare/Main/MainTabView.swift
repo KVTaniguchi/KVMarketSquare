@@ -11,16 +11,16 @@ struct MainTabView: View {
     var body: some View {
         TabView {
             HomeView()
-                .addNavigationView(title: "Home")
+                .addNavigationView(title: Localization.key(.TabHomeTitle))
                 .tabItem {
                     Image(systemName: "house.fill")
-                    Text("Home")
+                    Text(Localization.key(.TabHomeTitle))
                 }.tag(0)
             SettingsView()
-                .addNavigationView(title: "Settings")
+                .addNavigationView(title: Localization.key(.TabSettingsTitle))
                 .tabItem {
                     Image(systemName: "gearshape.fill")
-                    Text("Settings")
+                    Text(Localization.key(.TabSettingsTitle))
                 }.tag(1)
         }
         .tint(.black)

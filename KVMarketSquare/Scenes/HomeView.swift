@@ -11,23 +11,30 @@ struct HomeView: View {
     @State private var showingSearchSheet = false
     
     var body: some View {
-        Text("Home")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(
-                        action: {
-                            showingSearchSheet.toggle()
-                        }, label: {
-                            Image(systemName: "magnifyingglass")
-                        }
-                    )
-                }
+        contentView
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(
+                    action: {
+                        showingSearchSheet.toggle()
+                    }, label: {
+                        Image(systemName: "magnifyingglass")
+                    }
+                )
             }
-            .sheet(isPresented: $showingSearchSheet) {
-                SearchView() { store in
-                    
-                }
+        }
+        .sheet(isPresented: $showingSearchSheet) {
+            SearchView() { store in
+                
             }
+        }
+    }
+    
+    private var contentView: some View {
+        // have switch of number of saved stores here
+        VStack {
+            Text("Empty State goes here")
+        }
     }
 }
 
