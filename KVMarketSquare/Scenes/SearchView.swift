@@ -37,11 +37,13 @@ struct SearchView: View {
                     }
                 }
             }
-            .navigationTitle(Text("Market Square"))
+            .navigationTitle("Market Square")
             .toolbar {
-                Button("Dismiss") {
+                Button(action: {
                     dismiss()
-                }
+                }, label: {
+                    Image(systemName: "xmark")
+                })
             }
         }
     }

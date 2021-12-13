@@ -8,17 +8,24 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var showingSearchSheet = false
+    
     var body: some View {
         Text("Home")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(
                         action: {
-                            // Switch to list / map
+                            showingSearchSheet.toggle()
                         }, label: {
-                            Image(systemName: "list.bullet")
+                            Image(systemName: "magnifyingglass")
                         }
                     )
+                }
+            }
+            .sheet(isPresented: $showingSearchSheet) {
+                SearchView() { store in
+                    
                 }
             }
     }

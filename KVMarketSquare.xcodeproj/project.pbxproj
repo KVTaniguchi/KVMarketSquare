@@ -114,6 +114,7 @@
 			children = (
 				6C9322352767C73300D92BD8 /* MainTabView.swift */,
 				6C70F5062767CC1000884777 /* HomeView.swift */,
+				BD1E5CEC275B2141009587A2 /* SearchView.swift */,
 				6C70F5082767CC3200884777 /* SettingsView.swift */,
 			);
 			path = Scenes;
@@ -148,7 +149,6 @@
 				BD1E5CF0275B2146009587A2 /* Preview Content */,
 				BD1E5CEA275B2141009587A2 /* KVMarketSquareApp.swift */,
 				BDB415AD2766ED9D00535176 /* MarketSquareBaseView.swift */,
-				BD1E5CEC275B2141009587A2 /* SearchView.swift */,
 				BD1E5D14275BC9AE009587A2 /* KVFetchTask.swift */,
 				BD1E5D16275BCE18009587A2 /* SquareSellerSearchResult.swift */,
 				BDB415A72763043A00535176 /* KVWebView.swift */,

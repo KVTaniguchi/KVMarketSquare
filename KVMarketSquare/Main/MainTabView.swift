@@ -23,5 +23,6 @@ struct MainTabView: View {
                     Text("Settings")
                 }.tag(1)
         }
+        .tint(.black)
     }
 }
