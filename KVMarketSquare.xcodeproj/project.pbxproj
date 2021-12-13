@@ -27,6 +27,8 @@
 		BDB415AE2766ED9D00535176 /* MarketSquareBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB415AD2766ED9D00535176 /* MarketSquareBaseView.swift */; };
 		BDB415B02767ABCA00535176 /* StoresFromCoordsTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB415AF2767ABCA00535176 /* StoresFromCoordsTask.swift */; };
 		BDB415B22767AC8D00535176 /* SellerFromCoordResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB415B12767AC8D00535176 /* SellerFromCoordResult.swift */; };
+		C294F1532767F221005AEDFD /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294F1522767F221005AEDFD /* Favorites.swift */; };
+		C294F1572767F3DD005AEDFD /* FavoriteTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294F1562767F3DD005AEDFD /* FavoriteTileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,8 @@
 		BDB415AD2766ED9D00535176 /* MarketSquareBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketSquareBaseView.swift; sourceTree = "<group>"; };
 		BDB415AF2767ABCA00535176 /* StoresFromCoordsTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresFromCoordsTask.swift; sourceTree = "<group>"; };
 		BDB415B12767AC8D00535176 /* SellerFromCoordResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerFromCoordResult.swift; sourceTree = "<group>"; };
+		C294F1522767F221005AEDFD /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
+		C294F1562767F3DD005AEDFD /* FavoriteTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +173,8 @@
 				BDB415AB27630B1100535176 /* MapSearch.swift */,
 				BDB415AF2767ABCA00535176 /* StoresFromCoordsTask.swift */,
 				BDB415B12767AC8D00535176 /* SellerFromCoordResult.swift */,
+				C294F1522767F221005AEDFD /* Favorites.swift */,
+				C294F1562767F3DD005AEDFD /* FavoriteTileView.swift */,
 			);
 			path = KVMarketSquare;
 			sourceTree = "<group>";
@@ -332,12 +338,14 @@
 				6C70F50C2767CDAF00884777 /* View.swift in Sources */,
 				BDB415AE2766ED9D00535176 /* MarketSquareBaseView.swift in Sources */,
 				6C70F5102767DF5F00884777 /* Localization.swift in Sources */,
+				C294F1532767F221005AEDFD /* Favorites.swift in Sources */,
 				BDB415B22767AC8D00535176 /* SellerFromCoordResult.swift in Sources */,
 				BD1E5D15275BC9AE009587A2 /* KVFetchTask.swift in Sources */,
 				BDB415A82763043A00535176 /* KVWebView.swift in Sources */,
 				BD1E5CED275B2141009587A2 /* SearchView.swift in Sources */,
 				6C70F5072767CC1000884777 /* HomeView.swift in Sources */,
 				BDB415AC27630B1100535176 /* MapSearch.swift in Sources */,
+				C294F1572767F3DD005AEDFD /* FavoriteTileView.swift in Sources */,
 				BD1E5D17275BCE18009587A2 /* SquareSellerSearchResult.swift in Sources */,
 				BDB415B02767ABCA00535176 /* StoresFromCoordsTask.swift in Sources */,
 				6C70F5092767CC3200884777 /* SettingsView.swift in Sources */,
