@@ -19,7 +19,6 @@ struct Datum: Codable, Identifiable {
     let displayName, businessName, siteTitle: String
     let sellerType: SellerType
     let pickupEnabled, preparedStatusEnabled: String
-    let pickupTimezone: PickupTimezone
     let orderPrepTime: Int?
     let schedulePickupEnabled: String
     let lastOrderDate: String
@@ -38,7 +37,6 @@ struct Datum: Codable, Identifiable {
     let url: String?
     let timestamp: String
     let geodist: Double
-    let pickupTimezoneInfo: PickupTimezoneInfo
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -52,7 +50,6 @@ struct Datum: Codable, Identifiable {
         case sellerType = "seller_type"
         case pickupEnabled = "pickup_enabled"
         case preparedStatusEnabled = "prepared_status_enabled"
-        case pickupTimezone = "pickup_timezone"
         case orderPrepTime = "order_prep_time"
         case schedulePickupEnabled = "schedule_pickup_enabled"
         case lastOrderDate = "last_order_date"
@@ -73,43 +70,11 @@ struct Datum: Codable, Identifiable {
         case partnerSeller = "partner_seller"
         case url, timestamp
         case geodist = "geodist()"
-        case pickupTimezoneInfo = "pickup_timezone_info"
     }
 }
 
 enum CountryCode: String, Codable {
     case us = "US"
-}
-
-enum PickupTimezone: String, Codable {
-    case americaChicago = "America/Chicago"
-    case americaLosAngeles = "America/Los_Angeles"
-    case americaNorthDakotaCenter = "America/North_Dakota/Center"
-}
-
-// MARK: - PickupTimezoneInfo
-struct PickupTimezoneInfo: Codable {
-    let name: PickupTimezone
-    let currentTime24_Format: CurrentTime24_Format
-    let utcOffsetString: UTCOffsetString
-    let utcOffsetMinutes: Int
-
-    enum CodingKeys: String, CodingKey {
-        case name
-        case currentTime24_Format = "current_time_24_format"
-        case utcOffsetString = "utc_offset_string"
-        case utcOffsetMinutes = "utc_offset_minutes"
-    }
-}
-
-enum CurrentTime24_Format: String, Codable {
-    case the1112 = "11:12"
-    case the1312 = "13:12"
-}
-
-enum UTCOffsetString: String, Codable {
-    case the0600 = "-06:00"
-    case the0800 = "-08:00"
 }
 
 enum SellerType: String, Codable {
