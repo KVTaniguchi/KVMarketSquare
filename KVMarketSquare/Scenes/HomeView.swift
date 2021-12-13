@@ -55,11 +55,23 @@ struct HomeView: View {
     }
     
     private var shopsListView: some View {
-        HStack {
-            ForEach(Array(appData.favoriteShops)) { shop in
-                FavoriteTileView(name: shop.displayName ?? shop.userId)
+        List {
+            ForEach(Array(appData.favoriteShops)) { store in
+                NavigationLink {
+                    StoreWebView(store: store)
+                } label: {
+                    FavoriteTileView(name: store.displayName ?? store.userId)
+                }
             }
         }
+    }
+}
+
+struct StoreWebView: View {
+    let store: SellerAppData
+    
+    var body: some View {
+        Text("store view for \(store.displayName ?? "")\n\(store.userId)\n\(store.siteId)") // todo load the store here
     }
 }
 

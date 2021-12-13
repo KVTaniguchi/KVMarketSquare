@@ -1,37 +1,4 @@
-//
-//  MarketSquareBaseView.swift
-//  KVMarketSquare
-//
-//  Created by Kevin Taniguchi on 12/12/21.
-//
-
 import SwiftUI
-
-
-struct FoundationView: View {
-    @State private var showingSearchSheet = false
-    
-    // store loading task
-    
-    var body: some View {
-        // ui element at top, when tapped, the search feature is shown in a sheet
-        VStack {
-            Button("Find stores") {
-                showingSearchSheet.toggle()
-            }
-            .padding()
-            .sheet(isPresented: $showingSearchSheet) {
-                SearchView() { store in
-                    
-                }
-            }
-        }
-
-        List {
-            // takes in a list store ids and executes a search against them
-        }
-    }
-}
 
 struct URLLookupPayload: Codable {
     let userSites: [SellerIdentifier]
@@ -50,10 +17,6 @@ struct SellerIdentifier: Codable {
     }
 }
 
-struct SavedStores {
-    
-}
-
 struct SellerStore {
     let userId: String
     let siteId: String
@@ -62,6 +25,12 @@ struct SellerStore {
 
 // POST
 //https://www.weebly.com/app/website/api/v1/sites/urls
+
+struct StoreURLFetcher {
+    func fetch() {
+        
+    }
+}
 
 // response
 //{
