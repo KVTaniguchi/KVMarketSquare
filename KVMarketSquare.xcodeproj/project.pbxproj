@@ -12,6 +12,7 @@
 		6C70F50C2767CDAF00884777 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C70F50B2767CDAF00884777 /* View.swift */; };
 		6C70F5102767DF5F00884777 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C70F50F2767DF5F00884777 /* Localization.swift */; };
 		6C70F5152767E01D00884777 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C70F5172767E01D00884777 /* Localizable.strings */; };
+		6C70F51A2767F2C000884777 /* Published.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C70F5192767F2C000884777 /* Published.swift */; };
 		6C9322362767C73300D92BD8 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9322352767C73300D92BD8 /* MainTabView.swift */; };
 		BD1E5CEB275B2141009587A2 /* KVMarketSquareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1E5CEA275B2141009587A2 /* KVMarketSquareApp.swift */; };
 		BD1E5CED275B2141009587A2 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1E5CEC275B2141009587A2 /* SearchView.swift */; };
@@ -54,6 +55,7 @@
 		6C70F50B2767CDAF00884777 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = View.swift; path = ../View.swift; sourceTree = "<group>"; };
 		6C70F50F2767DF5F00884777 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		6C70F5162767E01D00884777 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6C70F5192767F2C000884777 /* Published.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Published.swift; sourceTree = "<group>"; };
 		6C9322352767C73300D92BD8 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainTabView.swift; path = ../Main/MainTabView.swift; sourceTree = "<group>"; };
 		BD1E5CE7275B2141009587A2 /* KVMarketSquare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KVMarketSquare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD1E5CEA275B2141009587A2 /* KVMarketSquareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVMarketSquareApp.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				6C70F50B2767CDAF00884777 /* View.swift */,
+				6C70F5192767F2C000884777 /* Published.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				BD1E5D15275BC9AE009587A2 /* KVFetchTask.swift in Sources */,
 				BDB415A82763043A00535176 /* KVWebView.swift in Sources */,
 				BD1E5CED275B2141009587A2 /* SearchView.swift in Sources */,
+				6C70F51A2767F2C000884777 /* Published.swift in Sources */,
 				6C70F5072767CC1000884777 /* HomeView.swift in Sources */,
 				BDB415AC27630B1100535176 /* MapSearch.swift in Sources */,
 				C294F1572767F3DD005AEDFD /* FavoriteTileView.swift in Sources */,
