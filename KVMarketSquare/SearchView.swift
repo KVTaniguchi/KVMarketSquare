@@ -26,13 +26,14 @@ struct SearchView: View {
                 Section {
                     ForEach(mapSearch.locationResults, id: \.self) { location in
                         NavigationLink(destination:
-                                        Detail(locationResult: location)) {
+                                        SellerSearchResultsView(locationResult: location)) {
                                             VStack(alignment: .leading) {
-                                            Text(location.title)
-                                Text(location.subtitle)
-                                    .font(.system(.caption))
-                            }
-                        }
+                                                Text(location.title)
+                                                Text(location.subtitle)
+                                                    .font(.system(.caption)
+                                                )
+                                            }
+                                        }
                     }
                 }
             }
@@ -46,13 +47,13 @@ struct SearchView: View {
     }
 }
 
-class DetailViewModel : ObservableObject {
+class AddressToCoordinateResolver : ObservableObject {
     @Published var isLoading = true
-    @Published private var coordinate : CLLocationCoordinate2D?
+    @Published var coordinate : CLLocationCoordinate2D = CLLocationCoordinate2D()
     @Published var region: MKCoordinateRegion = MKCoordinateRegion()
     
     var coordinateForMap : CLLocationCoordinate2D {
-        coordinate ?? CLLocationCoordinate2D()
+        coordinate
     }
     
     func reconcileLocation(location: MKLocalSearchCompletion) {
@@ -72,10 +73,79 @@ class DetailViewModel : ObservableObject {
     }
 }
 
-// repurpose to show weebly search results
+struct SellerSearchResultsView: View {
+    var locationResult : MKLocalSearchCompletion
+    @StateObject private var viewModel = AddressToCoordinateResolver()
+
+    init(locationResult : MKLocalSearchCompletion) {
+        self.locationResult = locationResult
+    }
+
+    var body: some View {
+        Group {
+            if viewModel.isLoading {
+                Text("Loading...")
+            } else {
+                SellerResultsListView(coordinate: viewModel.coordinate)
+            }
+        }
+        .onAppear {
+            viewModel.reconcileLocation(location: locationResult)
+        }
+        .onDisappear {
+            viewModel.clear()
+        }
+        .navigationTitle(Text(locationResult.title))
+    }
+}
+
+struct SellerResultsListView: View {
+    @StateObject var task: FetchTask<SellerFromCoordsResult> = FetchTask<SellerFromCoordsResult>()
+    
+    private let url: URL
+    
+//    'https://www.weebly.com/app/store/api/v1/seller-map/lat/44.9045212/lng/-93.173926?page=0&per_page=100'
+    
+    init?(coordinate : CLLocationCoordinate2D) {
+        var sellerMapComponents = URLComponents()
+            sellerMapComponents.scheme = "https"
+            sellerMapComponents.host = "weebly.com"
+            sellerMapComponents.path = "/app/store/api/v1/seller-map/lat/\(coordinate.latitude)/lng/\(coordinate.longitude)"
+            sellerMapComponents.queryItems = [
+                URLQueryItem(name: "page", value: "\(0)"), // not gonna care about this now
+                URLQueryItem(name: "per_page", value: "\(100)")
+            ]
+        
+        guard let url = sellerMapComponents.url else {
+            assertionFailure("no url")
+            return nil
+        }
+        
+        self.url = url
+    }
+    
+    var body: some View {
+        switch task.result {
+        case .success(let model):
+            List(model.data) { store in
+                Text(store.displayName)
+            }
+        case .failure(let error):
+            Text(String(describing: error))
+        case .none:
+            ProgressView().onAppear(perform: {
+                withAnimation {
+                    self.task.fetchModel(withURL: self.url)
+                }
+            })
+        }
+    }
+}
+
+// shows a map :shrug maybe use it?
 struct Detail : View {
     var locationResult : MKLocalSearchCompletion
-    @StateObject private var viewModel = DetailViewModel()
+    @StateObject private var viewModel = AddressToCoordinateResolver()
     
     struct Marker: Identifiable {
         let id = UUID()
@@ -97,8 +167,6 @@ struct Detail : View {
                 }
             }
         }.onAppear {
-            print("*******")
-            print(locationResult)
             viewModel.reconcileLocation(location: locationResult)
         }.onDisappear {
             viewModel.clear()

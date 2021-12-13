@@ -1,9 +1,7 @@
-////////
-///
 // This file was generated from JSON Schema using quicktype, do not modify it directly.
 // To parse the JSON, add this file to your project and do:
 //
-//   let sellerFromCoordResult = try? newJSONDecoder().decode(SquareMapSellerSearchResult.self, from: jsonData)
+//   let sellerFromCoordsResult = try? newJSONDecoder().decode(SellerFromCoordsResult.self, from: jsonData)
 
 import Foundation
 
@@ -14,7 +12,7 @@ struct SellerFromCoordsResult: Codable {
 }
 
 // MARK: - Datum
-struct Datum: Codable {
+struct Datum: Codable, Identifiable {
     let id, ownerID, siteID: String
     let addressID: Int?
     let nickname: String?
@@ -23,20 +21,19 @@ struct Datum: Codable {
     let pickupEnabled, preparedStatusEnabled: String
     let pickupTimezone: PickupTimezone
     let orderPrepTime: Int?
-    let schedulePickupEnabled, pickupHours: String
-    let lastOrderDate: Date
+    let schedulePickupEnabled: String
+    let lastOrderDate: String
     let isSquareLocation: Int
     let pickupInstructions: String?
-    let squareBusinessHours, deliveryEnabled: String
+    let deliveryEnabled: String
     let deliveryFee, deliveryOrderSubtotalMinimum: String?
     let deliveryEstimatedMinDurationMinutes, deliveryEstimatedMaxDurationMinutes: Int?
     let curbsidePickupEnabled, street, street2, postalCode: String
     let city: String
-    let region: Region
+    let region: String
     let countryCode: CountryCode
     let phone, email: String?
     let storeLatLon: String
-    let createdAt, updatedAt: Date?
     let partnerSeller: String
     let url: String?
     let timestamp: String
@@ -58,11 +55,9 @@ struct Datum: Codable {
         case pickupTimezone = "pickup_timezone"
         case orderPrepTime = "order_prep_time"
         case schedulePickupEnabled = "schedule_pickup_enabled"
-        case pickupHours = "pickup_hours"
         case lastOrderDate = "last_order_date"
         case isSquareLocation = "is_square_location"
         case pickupInstructions = "pickup_instructions"
-        case squareBusinessHours = "square_business_hours"
         case deliveryEnabled = "delivery_enabled"
         case deliveryFee = "delivery_fee"
         case deliveryOrderSubtotalMinimum = "delivery_order_subtotal_minimum"
@@ -75,13 +70,15 @@ struct Datum: Codable {
         case countryCode = "country_code"
         case phone, email
         case storeLatLon = "store_lat_lon"
-        case createdAt = "created_at"
-        case updatedAt = "updated_at"
         case partnerSeller = "partner_seller"
         case url, timestamp
         case geodist = "geodist()"
         case pickupTimezoneInfo = "pickup_timezone_info"
     }
+}
+
+enum CountryCode: String, Codable {
+    case us = "US"
 }
 
 enum PickupTimezone: String, Codable {
@@ -106,17 +103,13 @@ struct PickupTimezoneInfo: Codable {
 }
 
 enum CurrentTime24_Format: String, Codable {
-    case the0812 = "08:12"
-    case the1012 = "10:12"
+    case the1112 = "11:12"
+    case the1312 = "13:12"
 }
 
 enum UTCOffsetString: String, Codable {
     case the0600 = "-06:00"
     case the0800 = "-08:00"
-}
-
-enum Region: String, Codable {
-    case mn = "MN"
 }
 
 enum SellerType: String, Codable {
