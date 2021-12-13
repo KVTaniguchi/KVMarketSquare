@@ -135,10 +135,19 @@ struct SellerResultsListView: View {
             List(model.data) { store in
                 Button {
                     let sellerStore = SellerAppData(siteId: store.siteID, userId: store.ownerID, displayName: store.displayName)
-                    appData.favoriteShops.insert(sellerStore)
+                    if appData.favoriteShops.contains(sellerStore) {
+                        appData.favoriteShops.remove(sellerStore)
+                    } else {
+                        appData.favoriteShops.insert(sellerStore)
+                    }
+                    
                 } label: {
                     HStack {
                         Text(store.displayName)
+                        if appData.favoriteShops.contains(where: { $0.userId == store.ownerID }) {
+                            Spacer()
+                            Image(systemName: "checkmark.circle")
+                        }
                     }
                 }
             }
