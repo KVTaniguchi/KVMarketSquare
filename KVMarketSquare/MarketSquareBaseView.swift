@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-struct FoundationView: View {
+struct MarketSquareBaseView: View {
     @State private var showingSearchSheet = false
     
     // store loading task
@@ -25,17 +25,18 @@ struct FoundationView: View {
                     
                 }
             }
-        }
-        
-        // showing search sheet
-        //  - selecting an item pops another list sheet with store search results
-        
-        //  - selecting an store item drops back down to bottom sheet and shows store buttons, circular arranged in a collection view grid, but list for now is fine
-        
-        // area showing list of selected stores - can be updated
+            // showing search sheet
+            //  - selecting an item pops another list sheet with store search results
+            
+            //  - selecting an store item drops back down to bottom sheet and shows store buttons, circular arranged in a collection view grid, but list for now is fine
+            
+            // area showing list of selected stores - can be updated
 
-        List {
-            // takes in a list store ids and executes a search against them
+            List {
+                // takes in a list store ids and executes a search against them
+                Text("sample")
+                Text("data")
+            }
         }
     }
 }
