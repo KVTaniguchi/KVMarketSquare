@@ -10,8 +10,11 @@ import MapKit
 import SwiftUI
 
 
-struct ContentView: View {
+struct SearchView: View {
     @StateObject private var mapSearch = MapSearch()
+    @Environment(\.dismiss) var dismiss
+    
+    let storeSelected: (String) -> Void
     
     var body: some View {
         NavigationView {
@@ -22,16 +25,23 @@ struct ContentView: View {
                 }
                 Section {
                     ForEach(mapSearch.locationResults, id: \.self) { location in
-                        NavigationLink(destination: Detail(locationResult: location)) {
-                            VStack(alignment: .leading) {
-                                Text(location.title)
+                        NavigationLink(destination:
+                                        Detail(locationResult: location)) {
+                                            VStack(alignment: .leading) {
+                                            Text(location.title)
                                 Text(location.subtitle)
                                     .font(.system(.caption))
                             }
                         }
                     }
                 }
-            }.navigationTitle(Text("Address search"))
+            }
+            .navigationTitle(Text("Market Square"))
+            .toolbar {
+                Button("Dismiss") {
+                    dismiss()
+                }
+            }
         }
     }
 }
@@ -62,6 +72,7 @@ class DetailViewModel : ObservableObject {
     }
 }
 
+// repurpose to show weebly search results
 struct Detail : View {
     var locationResult : MKLocalSearchCompletion
     @StateObject private var viewModel = DetailViewModel()
@@ -76,12 +87,18 @@ struct Detail : View {
             if viewModel.isLoading {
                 Text("Loading...")
             } else {
+                // search for weebly stores
+                
+                // using mapsearch?
+                
                 Map(coordinateRegion: $viewModel.region,
                     annotationItems: [Marker(location: MapMarker(coordinate: viewModel.coordinateForMap))]) { (marker) in
                     marker.location
                 }
             }
         }.onAppear {
+            print("*******")
+            print(locationResult)
             viewModel.reconcileLocation(location: locationResult)
         }.onDisappear {
             viewModel.clear()
