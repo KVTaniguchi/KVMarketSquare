@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var showingSearchSheet = false
-    @EnvironmentObject private var favorites: Favorites
+    @EnvironmentObject private var appData: AppData
     
     var body: some View {
         contentView
@@ -32,7 +32,7 @@ struct HomeView: View {
     }
     
     private var contentView: some View {
-        if favorites.shops.count == 0 {
+        if appData.favoriteShops.count == 0 {
             return AnyView(emptyView)
         }
         return AnyView(shopsListView)
@@ -56,7 +56,7 @@ struct HomeView: View {
     
     private var shopsListView: some View {
         HStack {
-            ForEach(favorites.shops, id: \.self) { shop in
+            ForEach(appData.favoriteShops, id: \.self) { shop in
                 FavoriteTileView(name: shop)
             }
         }

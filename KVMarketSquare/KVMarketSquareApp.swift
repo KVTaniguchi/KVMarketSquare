@@ -9,12 +9,12 @@ import SwiftUI
 
 @main
 struct KVMarketSquareApp: App {
-    @StateObject var favorites = Favorites()
+    @StateObject var appData = AppData()
 
     var body: some Scene {
         WindowGroup {
             MainTabView()
-                .environmentObject(favorites)
+                .environmentObject(appData)
         }
     }
 }

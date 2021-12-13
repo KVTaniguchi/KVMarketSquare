@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Favorites: ObservableObject {
+class AppData: ObservableObject {
     // this should be of type some link to a shop identifier
-    @Published var shops: [String] = []
+    @Published var favoriteShops: [String] = ["hi", "bye"]
 }
