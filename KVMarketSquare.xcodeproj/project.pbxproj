@@ -19,6 +19,8 @@
 		BDB415A82763043A00535176 /* KVWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB415A72763043A00535176 /* KVWebView.swift */; };
 		BDB415AC27630B1100535176 /* MapSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB415AB27630B1100535176 /* MapSearch.swift */; };
 		BDB415AE2766ED9D00535176 /* MarketSquareBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB415AD2766ED9D00535176 /* MarketSquareBaseView.swift */; };
+		BDB415B02767ABCA00535176 /* StoresFromCoordsTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB415AF2767ABCA00535176 /* StoresFromCoordsTask.swift */; };
+		BDB415B22767AC8D00535176 /* SellerFromCoordResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB415B12767AC8D00535176 /* SellerFromCoordResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		BDB415A72763043A00535176 /* KVWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVWebView.swift; sourceTree = "<group>"; };
 		BDB415AB27630B1100535176 /* MapSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearch.swift; sourceTree = "<group>"; };
 		BDB415AD2766ED9D00535176 /* MarketSquareBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketSquareBaseView.swift; sourceTree = "<group>"; };
+		BDB415AF2767ABCA00535176 /* StoresFromCoordsTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresFromCoordsTask.swift; sourceTree = "<group>"; };
+		BDB415B12767AC8D00535176 /* SellerFromCoordResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerFromCoordResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +117,8 @@
 				BD1E5D16275BCE18009587A2 /* SquareSellerSearchResult.swift */,
 				BDB415A72763043A00535176 /* KVWebView.swift */,
 				BDB415AB27630B1100535176 /* MapSearch.swift */,
+				BDB415AF2767ABCA00535176 /* StoresFromCoordsTask.swift */,
+				BDB415B12767AC8D00535176 /* SellerFromCoordResult.swift */,
 			);
 			path = KVMarketSquare;
 			sourceTree = "<group>";
@@ -273,11 +279,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BDB415AE2766ED9D00535176 /* MarketSquareBaseView.swift in Sources */,
+				BDB415B22767AC8D00535176 /* SellerFromCoordResult.swift in Sources */,
 				BD1E5D15275BC9AE009587A2 /* KVFetchTask.swift in Sources */,
 				BDB415A82763043A00535176 /* KVWebView.swift in Sources */,
 				BD1E5CED275B2141009587A2 /* SearchView.swift in Sources */,
 				BDB415AC27630B1100535176 /* MapSearch.swift in Sources */,
 				BD1E5D17275BCE18009587A2 /* SquareSellerSearchResult.swift in Sources */,
+				BDB415B02767ABCA00535176 /* StoresFromCoordsTask.swift in Sources */,
 				BD1E5CEB275B2141009587A2 /* KVMarketSquareApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
