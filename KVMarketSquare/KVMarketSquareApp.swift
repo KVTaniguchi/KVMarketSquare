@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct KVMarketSquareApp: App {
+    @StateObject var appData = AppData()
+
     var body: some Scene {
         WindowGroup {
             MainTabView()
+                .environmentObject(appData)
         }
     }
 }
