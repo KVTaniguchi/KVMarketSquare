@@ -61,16 +61,18 @@ struct HomeView: View {
                     NavigationLink {
                         StoreWebView(store: store)
                     } label: {
-                        FavoriteTileView(name: store.displayName ?? store.userId)
+                        FavoriteTileView(store: store)
                     }
                 }
+                .listRowSeparator(.hidden)
+
             } header: {
                 Text(Localization.key(.ShopListTitle))
                     .font(.body)
                     .bold()
                     .foregroundColor(.black)
                     .textCase(.none)
-            }   
+            }
         }
     }
 }

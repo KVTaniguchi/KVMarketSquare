@@ -15,4 +15,23 @@ extension View {
                 .navigationTitle(title)
         }
     }
+    
+    func horizontalAlignment(_ alignment: Alignment) -> some View {
+        HStack {
+            if alignment == .trailing {
+                Spacer()
+            }
+            
+            self
+            
+            if alignment == .leading {
+                Spacer()
+            }
+        }
+    }
+}
+
+
+enum Alignment {
+    case leading, trailing
 }
