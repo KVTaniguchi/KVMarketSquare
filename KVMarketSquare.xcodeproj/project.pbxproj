@@ -150,6 +150,7 @@
 				6C9B66DF2768F23E0028F2A4 /* StoreWebView.swift */,
 				6C9B66E12768F28F0028F2A4 /* NavBackButton.swift */,
 				6C9B66E32768F3840028F2A4 /* FavoriteButton.swift */,
+				C294F1562767F3DD005AEDFD /* FavoriteTileView.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -199,7 +200,6 @@
 				BDB415AB27630B1100535176 /* MapSearch.swift */,
 				BDB415B12767AC8D00535176 /* SellerFromCoordResult.swift */,
 				C294F1522767F221005AEDFD /* Favorites.swift */,
-				C294F1562767F3DD005AEDFD /* FavoriteTileView.swift */,
 			);
 			path = KVMarketSquare;
 			sourceTree = "<group>";

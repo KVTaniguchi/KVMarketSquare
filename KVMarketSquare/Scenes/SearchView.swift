@@ -153,7 +153,12 @@ struct SellerResultsListView: View {
         case .success(let model):
             List(model.data) { store in
                 Button {
-                    let sellerStore = SellerAppData(siteId: store.siteID, userId: store.ownerID, displayName: store.displayName)
+                    let sellerStore = SellerAppData(
+                        siteId: store.siteID,
+                        userId: store.ownerID,
+                        city: store.city,
+                        displayName: store.displayName
+                    )
                     if appData.favoriteShops.contains(sellerStore) {
                         appData.favoriteShops.remove(sellerStore)
                     } else {

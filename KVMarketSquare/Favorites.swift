@@ -16,15 +16,18 @@ struct SellerAppData: Identifiable, Hashable, Codable {
     let id: String
     let siteId: String
     let userId: String
+    let city: String
     let displayName: String?
     
     init(
         siteId: String,
         userId: String,
+        city: String,
         displayName: String? = nil
     ) {
         self.siteId = siteId
         self.userId = userId
+        self.city = city
         self.displayName = displayName
         self.id = userId
     }
@@ -32,6 +35,7 @@ struct SellerAppData: Identifiable, Hashable, Codable {
     static var preview = SellerAppData(
         siteId: "",
         userId: "",
+        city: "",
         displayName: ""
     )
 }
