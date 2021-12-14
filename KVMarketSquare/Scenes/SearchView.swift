@@ -23,6 +23,7 @@ struct SearchView: View {
                 Section {
                     TextField(Localization.key(.SearchFieldTitle), text: $mapSearch.searchTerm)
                         .modifier(ClearButton(text: $mapSearch.searchTerm, results: $mapSearch.locationResults))
+                        .disableAutocorrection(true)
                 }
                 Section {
                     ForEach(mapSearch.locationResults, id: \.self) { location in
