@@ -9,10 +9,10 @@ import Foundation
 
 class AppData: ObservableObject {
     // this should be of type some link to a shop identifier
-    @Published var favoriteShops: Set<SellerAppData> = []
+    @Published(key: "favoriteShops") var favoriteShops: Set<SellerAppData> = []
 }
 
-struct SellerAppData: Identifiable, Hashable {
+struct SellerAppData: Identifiable, Hashable, Codable {
     let id: String
     let siteId: String
     let userId: String
