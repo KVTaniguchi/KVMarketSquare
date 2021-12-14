@@ -64,6 +64,7 @@ struct HomeView: View {
                         FavoriteTileView(store: store)
                     }
                 }
+                .onDelete(perform: delete)
                 .listRowSeparator(.hidden)
 
             } header: {
@@ -74,6 +75,17 @@ struct HomeView: View {
                     .textCase(.none)
             }
         }
+    }
+    
+    private func delete(at offsets: IndexSet) {
+        let favoriteShops = Array(appData.favoriteShops)
+        var shopsToDelete: Set<SellerAppData> = []
+
+        for offset in offsets {
+            shopsToDelete.insert(favoriteShops[offset])
+        }
+
+        appData.favoriteShops.subtract(shopsToDelete)
     }
 }
 
