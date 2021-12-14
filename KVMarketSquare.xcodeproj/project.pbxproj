@@ -73,9 +73,9 @@
 		BDB415AB27630B1100535176 /* MapSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearch.swift; sourceTree = "<group>"; };
 		BDB415AD2766ED9D00535176 /* MarketSquareBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketSquareBaseView.swift; sourceTree = "<group>"; };
 		BDB415AF2767ABCA00535176 /* StoresFromCoordsTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresFromCoordsTask.swift; sourceTree = "<group>"; };
-		BDB415B12767AC8D00535176 /* SellerFromCoordResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerFromCoordResult.swift; sourceTree = "<group>"; };
-		C294F1522767F221005AEDFD /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
-		C294F1562767F3DD005AEDFD /* FavoriteTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTileView.swift; sourceTree = "<group>"; };
+		BDB415B12767AC8D00535176 /* SellerFromCoordResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SellerFromCoordResult.swift; path = ../SellerFromCoordResult.swift; sourceTree = "<group>"; };
+		C294F1522767F221005AEDFD /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Favorites.swift; path = ../Favorites.swift; sourceTree = "<group>"; };
+		C294F1562767F3DD005AEDFD /* FavoriteTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoriteTileView.swift; path = ../FavoriteTileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +140,23 @@
 			path = Scenes;
 			sourceTree = "<group>";
 		};
+		6C9B66DD2768ED580028F2A4 /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				C294F1562767F3DD005AEDFD /* FavoriteTileView.swift */,
+			);
+			path = UIComponents;
+			sourceTree = "<group>";
+		};
+		6C9B66DE2768ED690028F2A4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C294F1522767F221005AEDFD /* Favorites.swift */,
+				BDB415B12767AC8D00535176 /* SellerFromCoordResult.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		BD1E5CDE275B2141009587A2 = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +183,8 @@
 				6C70F50E2767DF3A00884777 /* Localization */,
 				BD1E5CEE275B2146009587A2 /* Assets.xcassets */,
 				6C9322382767C79600D92BD8 /* Scenes */,
+				6C9B66DD2768ED580028F2A4 /* UIComponents */,
+				6C9B66DE2768ED690028F2A4 /* Model */,
 				6C70F50A2767CD7900884777 /* Utils */,
 				BD1E5CF0275B2146009587A2 /* Preview Content */,
 				BD1E5CEA275B2141009587A2 /* KVMarketSquareApp.swift */,
@@ -175,9 +194,6 @@
 				BDB415A72763043A00535176 /* KVWebView.swift */,
 				BDB415AB27630B1100535176 /* MapSearch.swift */,
 				BDB415AF2767ABCA00535176 /* StoresFromCoordsTask.swift */,
-				BDB415B12767AC8D00535176 /* SellerFromCoordResult.swift */,
-				C294F1522767F221005AEDFD /* Favorites.swift */,
-				C294F1562767F3DD005AEDFD /* FavoriteTileView.swift */,
 			);
 			path = KVMarketSquare;
 			sourceTree = "<group>";
