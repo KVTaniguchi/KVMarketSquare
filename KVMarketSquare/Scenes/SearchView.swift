@@ -11,6 +11,7 @@ import SwiftUI
 
 
 struct SearchView: View {
+    @Binding var showingSearchSheet: Bool
     @StateObject private var mapSearch = MapSearch()
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject private var appData: AppData
@@ -23,11 +24,12 @@ struct SearchView: View {
                 Section {
                     TextField(Localization.key(.SearchFieldTitle), text: $mapSearch.searchTerm)
                         .modifier(ClearButton(text: $mapSearch.searchTerm, results: $mapSearch.locationResults))
+                        .disableAutocorrection(true)
                 }
                 Section {
                     ForEach(mapSearch.locationResults, id: \.self) { location in
                         NavigationLink(destination:
-                                        SellerSearchResultsView(locationResult: location).environmentObject(appData)) {
+                                        SellerSearchResultsView(locationResult: location, showingSearchSheet: $showingSearchSheet).environmentObject(appData)) {
                                             VStack(alignment: .leading) {
                                                 Text(location.title)
                                                 Text(location.subtitle)
@@ -78,11 +80,13 @@ class AddressToCoordinateResolver : ObservableObject {
 
 struct SellerSearchResultsView: View {
     var locationResult : MKLocalSearchCompletion
+    @Binding var showingSearchSheet: Bool
     @StateObject private var viewModel = AddressToCoordinateResolver()
     @EnvironmentObject private var appData: AppData
 
-    init(locationResult : MKLocalSearchCompletion) {
+    init(locationResult : MKLocalSearchCompletion, showingSearchSheet: Binding<Bool>) {
         self.locationResult = locationResult
+        self._showingSearchSheet = showingSearchSheet
     }
 
     var body: some View {
@@ -105,6 +109,14 @@ struct SellerSearchResultsView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 NavBackButton()
+            }
+
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button("Save",
+                    action: {
+                        showingSearchSheet.toggle()
+                    }
+                )
             }
         }
     }

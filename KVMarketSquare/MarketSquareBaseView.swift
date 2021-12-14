@@ -14,8 +14,6 @@ struct StoreWebView: View {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         do {
             let payload = URLLookupPayload(userSites: [SellerIdentifier(userID: store.userId, siteID: store.siteId)])
-            
-            print(payload)
             let body = try JSONEncoder().encode(payload)
             request.httpBody = body
         } catch {
@@ -29,26 +27,35 @@ struct StoreWebView: View {
     var body: some View {
         switch task.result {
         case .success(let response):
-            // this needs a ton of cleanup but it works
-            WebView(url: URL(string: response[store.userId]!.values.first!.url)!)
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationBarTitle(store.displayName ?? "")
-                .navigationBarBackButtonHidden(true)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        NavBackButton()
+            if let url = responseWebsite(from: response) {
+                WebView(url: URL(string: response[store.userId]!.values.first!.url)!)
+                    .navigationBarTitleDisplayMode(.inline)
+                    .navigationBarTitle(store.displayName ?? "")
+                    .navigationBarBackButtonHidden(true)
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            NavBackButton()
+                        }
+                        
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            FavoriteButton(sellerStore: store)
+                        }
                     }
-                    
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        FavoriteButton(sellerStore: store)
-                    }
-                }
-            
+            } else {
+                Text("Sorry, this seller does not have a Square website")
+            }
         case .failure(let error):
             Text(String(describing: error))
         case .none:
-            Text("no response")
+            ProgressView()
         }
+    }
+    
+    private func responseWebsite(from response: URLStoresResponse) -> URL? {
+        if let link = response[self.store.userId]?[self.store.siteId]?.url, let url = URL(string: link)   {
+            return url
+        }
+        return nil
     }
 }
 
@@ -79,7 +86,7 @@ typealias URLStoresResponse = [String: [String: URLStoresResponseValue]]
 import WebKit
  
 struct WebView: UIViewRepresentable {
-    var url: URL
+    let url: URL
  
     func makeUIView(context: Context) -> WKWebView {
         return WKWebView()

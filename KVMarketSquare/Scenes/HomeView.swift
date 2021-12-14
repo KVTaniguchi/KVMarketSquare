@@ -25,7 +25,7 @@ struct HomeView: View {
             }
         }
         .sheet(isPresented: $showingSearchSheet) {
-            SearchView() { store in
+            SearchView(showingSearchSheet: $showingSearchSheet) { store in
                 
             }.environmentObject(appData)
         }
