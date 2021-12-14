@@ -9,7 +9,7 @@ import Foundation
 
 class AppData: ObservableObject {
     // this should be of type some link to a shop identifier
-    @Published(key: "favortieShops") var favoriteShops: Set<SellerAppData> = []
+    @Published(key: "favoriteShops") var favoriteShops: Set<SellerAppData> = []
 }
 
 struct SellerAppData: Identifiable, Hashable, Codable {
