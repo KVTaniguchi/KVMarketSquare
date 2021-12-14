@@ -31,6 +31,19 @@ struct StoreWebView: View {
         case .success(let response):
             // this needs a ton of cleanup but it works
             WebView(url: URL(string: response[store.userId]!.values.first!.url)!)
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarTitle(store.displayName ?? "")
+                .navigationBarBackButtonHidden(true)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        NavBackButton()
+                    }
+                    
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        FavoriteButton(sellerStore: store)
+                    }
+                }
+            
         case .failure(let error):
             Text(String(describing: error))
         case .none:

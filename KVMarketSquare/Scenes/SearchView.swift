@@ -100,6 +100,13 @@ struct SellerSearchResultsView: View {
             viewModel.clear()
         }
         .navigationTitle(Text(locationResult.title))
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                NavBackButton()
+            }
+        }
     }
 }
 
@@ -133,22 +140,13 @@ struct SellerResultsListView: View {
         switch task.result {
         case .success(let model):
             List(model.data) { store in
-                Button {
-                    let sellerStore = SellerAppData(siteId: store.siteID, userId: store.ownerID, displayName: store.displayName)
-                    if appData.favoriteShops.contains(sellerStore) {
-                        appData.favoriteShops.remove(sellerStore)
-                    } else {
-                        appData.favoriteShops.insert(sellerStore)
-                    }
-                    
+                NavigationLink {
+                    StoreWebView(store: SellerAppData(
+                        siteId: store.siteID,
+                        userId: store.ownerID,
+                        displayName: store.displayName))
                 } label: {
-                    HStack {
-                        Text(store.displayName)
-                        if appData.favoriteShops.contains(where: { $0.userId == store.ownerID }) {
-                            Spacer()
-                            Image(systemName: "checkmark.circle")
-                        }
-                    }
+                    FavoriteTileView(name: store.displayName)
                 }
             }
         case .failure(let error):
