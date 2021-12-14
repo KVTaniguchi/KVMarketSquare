@@ -104,7 +104,13 @@ struct SellerSearchResultsView: View {
             viewModel.clear()
         }
         .navigationTitle(Text(locationResult.title))
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
         .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                NavBackButton()
+            }
+
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Save",
                     action: {
@@ -235,7 +241,7 @@ public struct ClearButton: ViewModifier {
 
 
 
-// 
+//
 
 // what local api is this hitting?
 // giveandgetlocal.com

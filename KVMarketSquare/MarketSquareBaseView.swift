@@ -29,10 +29,21 @@ struct StoreWebView: View {
         case .success(let response):
             if let url = responseWebsite(from: response) {
                 WebView(url: url)
+                    .navigationBarTitleDisplayMode(.inline)
+                    .navigationBarTitle(store.displayName ?? "")
+                    .navigationBarBackButtonHidden(true)
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            NavBackButton()
+                        }
+                        
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            FavoriteButton(sellerStore: store)
+                        }
+                    }
             } else {
                 Text("Sorry, this seller does not have a Square website")
             }
-            
         case .failure(let error):
             Text(String(describing: error))
         case .none:

@@ -28,4 +28,10 @@ struct SellerAppData: Identifiable, Hashable, Codable {
         self.displayName = displayName
         self.id = userId
     }
+    
+    static var preview = SellerAppData(
+        siteId: "",
+        userId: "",
+        displayName: ""
+    )
 }

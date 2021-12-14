@@ -28,7 +28,7 @@ enum Localization: String {
     case TabHomeTitle, TabSettingsTitle
     
     // Home
-    case HomeEmptyTitle, HomeEmptyDescription
+    case HomeEmptyTitle, HomeEmptyDescription, ShopListTitle
     
     // Search
     case SearchViewTitle, SearchFieldTitle
