@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject private var appData: AppData
     @State private var showingSearchSheet = false
+    @Environment(\.colorScheme) var currentMode
     
     var body: some View {
         contentView
@@ -20,6 +21,8 @@ struct HomeView: View {
                         showingSearchSheet.toggle()
                     }, label: {
                         Image(systemName: "magnifyingglass")
+                            .renderingMode(.template)
+                            .foregroundColor(currentMode == .dark ? .white : .black)
                     }
                 )
             }
