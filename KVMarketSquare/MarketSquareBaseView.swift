@@ -2,7 +2,8 @@ import SwiftUI
 
 struct StoreWebView: View {
     let store: SellerAppData
-    let task = PostTask<URLStoresResponse>()
+    @StateObject var task = PostTask<URLStoresResponse>()
+    private let request: URLRequest
     
     // start fetching on init
     init?(store: SellerAppData) {
@@ -21,7 +22,7 @@ struct StoreWebView: View {
             return nil
         }
         
-        task.fetchModel(request: request)
+        self.request = request
     }
     
     var body: some View {
@@ -47,7 +48,11 @@ struct StoreWebView: View {
         case .failure(let error):
             Text(String(describing: error))
         case .none:
-            ProgressView()
+            ProgressView().onAppear(perform: {
+                withAnimation {
+                    self.task.fetchModel(request: self.request)
+                }
+            })
         }
     }
     
