@@ -152,26 +152,20 @@ struct SellerResultsListView: View {
         switch task.result {
         case .success(let model):
             List(model.data) { store in
-                Button {
-                    let sellerStore = SellerAppData(
+                NavigationLink {
+                    StoreWebView(store: SellerAppData(
                         siteId: store.siteID,
                         userId: store.ownerID,
                         city: store.city,
-                        displayName: store.displayName
+                        displayName: store.displayName)
                     )
-                    if appData.favoriteShops.contains(sellerStore) {
-                        appData.favoriteShops.remove(sellerStore)
-                    } else {
-                        appData.favoriteShops.insert(sellerStore)
-                    }
                 } label: {
-                    HStack {
-                        Text(store.displayName)
-                        if appData.favoriteShops.contains(where: { $0.userId == store.ownerID }) {
-                            Spacer()
-                            Image(systemName: "checkmark.circle")
-                        }
-                    }
+                    FavoriteTileView(store: SellerAppData(
+                        siteId: store.siteID,
+                        userId: store.ownerID,
+                        city: store.city,
+                        displayName: store.displayName)
+                    )
                 }
             }
         case .failure(let error):
