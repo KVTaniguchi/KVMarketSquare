@@ -61,7 +61,6 @@ class PostTask<T: Decodable>: ObservableObject {
                 case .finished:
                     break
                 case .failure(let error):
-                    print("#### sink error")
                     self?.result = .failure(error)
                 }
             }, receiveValue: { [weak self] model in
