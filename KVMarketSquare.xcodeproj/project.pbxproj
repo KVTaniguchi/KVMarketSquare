@@ -32,6 +32,7 @@
 		BDB415B22767AC8D00535176 /* SellerFromCoordResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB415B12767AC8D00535176 /* SellerFromCoordResult.swift */; };
 		C294F1532767F221005AEDFD /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294F1522767F221005AEDFD /* Favorites.swift */; };
 		C294F1572767F3DD005AEDFD /* FavoriteTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294F1562767F3DD005AEDFD /* FavoriteTileView.swift */; };
+		C294F15927693449005AEDFD /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294F15827693449005AEDFD /* Set.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		BDB415B12767AC8D00535176 /* SellerFromCoordResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerFromCoordResult.swift; sourceTree = "<group>"; };
 		C294F1522767F221005AEDFD /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 		C294F1562767F3DD005AEDFD /* FavoriteTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTileView.swift; sourceTree = "<group>"; };
+		C294F15827693449005AEDFD /* Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 			children = (
 				6C70F50B2767CDAF00884777 /* View.swift */,
 				6C70F5192767F2C000884777 /* Published.swift */,
+				C294F15827693449005AEDFD /* Set.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C294F15927693449005AEDFD /* Set.swift in Sources */,
 				6C70F50C2767CDAF00884777 /* View.swift in Sources */,
 				BDB415AE2766ED9D00535176 /* MarketSquareBaseView.swift in Sources */,
 				6C70F5102767DF5F00884777 /* Localization.swift in Sources */,
