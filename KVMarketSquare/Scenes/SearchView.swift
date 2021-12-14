@@ -152,13 +152,21 @@ struct SellerResultsListView: View {
         switch task.result {
         case .success(let model):
             List(model.data) { store in
-                NavigationLink {
-                    StoreWebView(store: SellerAppData(
-                        siteId: store.siteID,
-                        userId: store.ownerID,
-                        displayName: store.displayName))
+                Button {
+                    let sellerStore = SellerAppData(siteId: store.siteID, userId: store.ownerID, displayName: store.displayName)
+                    if appData.favoriteShops.contains(sellerStore) {
+                        appData.favoriteShops.remove(sellerStore)
+                    } else {
+                        appData.favoriteShops.insert(sellerStore)
+                    }
                 } label: {
-                    FavoriteTileView(name: store.displayName)
+                    HStack {
+                        Text(store.displayName)
+                        if appData.favoriteShops.contains(where: { $0.userId == store.ownerID }) {
+                            Spacer()
+                            Image(systemName: "checkmark.circle")
+                        }
+                    }
                 }
             }
         case .failure(let error):
@@ -233,7 +241,7 @@ public struct ClearButton: ViewModifier {
 
 
 
-// 
+//
 
 // what local api is this hitting?
 // giveandgetlocal.com

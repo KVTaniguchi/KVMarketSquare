@@ -28,7 +28,7 @@ struct StoreWebView: View {
         switch task.result {
         case .success(let response):
             if let url = responseWebsite(from: response) {
-                WebView(url: URL(string: response[store.userId]!.values.first!.url)!)
+                WebView(url: url)
                     .navigationBarTitleDisplayMode(.inline)
                     .navigationBarTitle(store.displayName ?? "")
                     .navigationBarBackButtonHidden(true)
