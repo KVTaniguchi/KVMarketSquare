@@ -1,5 +1,44 @@
 import SwiftUI
 
+struct StoreWebView: View {
+    let store: SellerAppData
+    let task = PostTask<URLStoresResponse>()
+    
+    // start fetching on init
+    init?(store: SellerAppData) {
+        self.store = store
+        
+        guard let url = URL(string: "https://www.weebly.com/app/website/api/v1/sites/urls") else { return nil }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        do {
+            let payload = URLLookupPayload(userSites: [SellerIdentifier(userID: store.userId, siteID: store.siteId)])
+            
+            print(payload)
+            let body = try JSONEncoder().encode(payload)
+            request.httpBody = body
+        } catch {
+            assertionFailure(String(describing: error))
+            return nil
+        }
+        
+        task.fetchModel(request: request)
+    }
+    
+    var body: some View {
+        switch task.result {
+        case .success(let response):
+            // this needs a ton of cleanup but it works
+            WebView(url: URL(string: response[store.userId]!.values.first!.url)!)
+        case .failure(let error):
+            Text(String(describing: error))
+        case .none:
+            Text("no response")
+        }
+    }
+}
+
 struct URLLookupPayload: Codable {
     let userSites: [SellerIdentifier]
 
@@ -17,45 +56,24 @@ struct SellerIdentifier: Codable {
     }
 }
 
-struct SellerStore {
-    let userId: String
-    let siteId: String
-    var url: URL?
+// MARK: - URLStoresResponseValue
+struct URLStoresResponseValue: Codable {
+    let url: String
 }
 
-// POST
-//https://www.weebly.com/app/website/api/v1/sites/urls
+typealias URLStoresResponse = [String: [String: URLStoresResponseValue]]
 
-struct StoreURLFetcher {
-    func fetch() {
-        
+import WebKit
+ 
+struct WebView: UIViewRepresentable {
+    var url: URL
+ 
+    func makeUIView(context: Context) -> WKWebView {
+        return WKWebView()
     }
-}
-
-// response
-//{
-//  "119203630": { user id
-//    "271265949680067218": { site id
-//      "url": "https://karibu-grocery-deli.square.site" url
-//    }
-//  },
-//  "124050880": {
-//    "623544097567863026": {
-//      "url": "https://x2-pastries.square.site"
-//    }
-//  }
-//}
-
-struct SellerURLsResponse {
-    let users: [User]
-    
-    struct User {
-        let userId: String
-        let site: Site
-        
-        struct Site {
-            let siteId: String
-            let url: URL
-        }
+ 
+    func updateUIView(_ webView: WKWebView, context: Context) {
+        let request = URLRequest(url: url)
+        webView.load(request)
     }
 }

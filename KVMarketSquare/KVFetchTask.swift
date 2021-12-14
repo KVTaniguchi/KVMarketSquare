@@ -42,7 +42,7 @@ class PostTask<T: Decodable>: ObservableObject {
     @Published var finished = false
     @Published var result: Result<T, Error>?
     
-    func fetchModel(withURL url: URL, request: URLRequest) {
+    func fetchModel(request: URLRequest) {
         guard !finished else { return }
         
         self.cancellable = URLSession.shared.dataTaskPublisher(for: request)
@@ -61,6 +61,7 @@ class PostTask<T: Decodable>: ObservableObject {
                 case .finished:
                     break
                 case .failure(let error):
+                    print("#### sink error")
                     self?.result = .failure(error)
                 }
             }, receiveValue: { [weak self] model in

@@ -67,14 +67,6 @@ struct HomeView: View {
     }
 }
 
-struct StoreWebView: View {
-    let store: SellerAppData
-    
-    var body: some View {
-        Text("store view for \(store.displayName ?? "")\n\(store.userId)\n\(store.siteId)") // todo load the store here
-    }
-}
-
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
