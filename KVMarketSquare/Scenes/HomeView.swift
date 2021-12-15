@@ -27,10 +27,8 @@ struct HomeView: View {
                 )
             }
         }
-        .sheet(isPresented: $showingSearchSheet) {
-            SearchView(showingSearchSheet: $showingSearchSheet) { store in
-                
-            }.environmentObject(appData)
+        .fullScreenCover(isPresented: $showingSearchSheet) {
+            SearchView() { _ in }.environmentObject(appData)
         }
     }
     

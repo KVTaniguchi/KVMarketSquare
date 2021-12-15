@@ -27,35 +27,37 @@ struct StoreWebView: View {
     }
     
     var body: some View {
-        switch task.result {
-        case .success(let response):
-            if let url = responseWebsite(from: response) {
-                NavigationView {
-                    WebView(url: url)
-                        .navigationBarTitle(store.displayName ?? "")
-                        .navigationBarTitleDisplayMode(.inline)
-                        .navigationBarBackButtonHidden(true)
-                        .toolbar {
-                            ToolbarItem(placement: .navigationBarLeading) {
-                                NavBackButton(type: .close, dismissAction: dismiss)
-                            }
-                            
-                            ToolbarItem(placement: .navigationBarTrailing) {
-                                FavoriteButton(sellerStore: store)
-                            }
+        NavigationView {
+            Group {
+                switch task.result {
+                case .success(let response):
+                    if let url = responseWebsite(from: response) {
+                        WebView(url: url)
+                    } else {
+                        Text("Sorry, this seller does not have a Square website")
+                    }
+                case .failure(let error):
+                    Text(String(describing: error))
+                case .none:
+                    ProgressView().onAppear(perform: {
+                        withAnimation {
+                            self.task.fetchModel(request: self.request)
                         }
+                    })
                 }
-            } else {
-                Text("Sorry, this seller does not have a Square website")
             }
-        case .failure(let error):
-            Text(String(describing: error))
-        case .none:
-            ProgressView().onAppear(perform: {
-                withAnimation {
-                    self.task.fetchModel(request: self.request)
+            .navigationBarTitle(store.displayName ?? "")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    NavBackButton(type: .close, dismissAction: dismiss)
                 }
-            })
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    FavoriteButton(sellerStore: store)
+                }
+            }
         }
     }
     

@@ -11,7 +11,6 @@ import SwiftUI
 
 
 struct SearchView: View {
-    @Binding var showingSearchSheet: Bool
     @StateObject private var mapSearch = MapSearch()
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject private var appData: AppData
@@ -29,7 +28,7 @@ struct SearchView: View {
                 Section {
                     ForEach(mapSearch.locationResults, id: \.self) { location in
                         NavigationLink(destination:
-                                        SellerSearchResultsView(locationResult: location, showingSearchSheet: $showingSearchSheet).environmentObject(appData)) {
+                                        SellerSearchResultsView(locationResult: location).environmentObject(appData)) {
                                             VStack(alignment: .leading) {
                                                 Text(location.title)
                                                 Text(location.subtitle)
@@ -76,13 +75,12 @@ class AddressToCoordinateResolver : ObservableObject {
 
 struct SellerSearchResultsView: View {
     var locationResult : MKLocalSearchCompletion
-    @Binding var showingSearchSheet: Bool
     @StateObject private var viewModel = AddressToCoordinateResolver()
     @EnvironmentObject private var appData: AppData
+    @Environment(\.dismiss) var dismiss
 
-    init(locationResult : MKLocalSearchCompletion, showingSearchSheet: Binding<Bool>) {
+    init(locationResult : MKLocalSearchCompletion) {
         self.locationResult = locationResult
-        self._showingSearchSheet = showingSearchSheet
     }
 
     var body: some View {
@@ -108,11 +106,15 @@ struct SellerSearchResultsView: View {
             }
 
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button("Save",
+                Button(
                     action: {
-                        showingSearchSheet.toggle()
+                        UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
+                    }, label: {
+                        Image(systemName: "xmark")
+                            .renderingMode(.template)
+                            .tint(.blue)
                     }
-                ).tint(.blue)
+                )
             }
         }
     }
