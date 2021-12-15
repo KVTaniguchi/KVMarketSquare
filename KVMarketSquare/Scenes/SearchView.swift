@@ -123,18 +123,21 @@ struct SellerResultsListView: View {
     @EnvironmentObject private var appData: AppData
     @State private var selectedStore: SellerAppData?
     
-    private let url: URL
+    @StateObject var multiSearch: SellerMultiSearchFetcher = SellerMultiSearchFetcher()
     
-//    'https://www.weebly.com/app/store/api/v1/seller-map/lat/44.9045212/lng/-93.173926?page=0&per_page=100'
+    private let url: URL
+    private let coordinate: CLLocationCoordinate2D
     
     init?(coordinate : CLLocationCoordinate2D) {
+        // todo implement paging
+        //    'https://www.weebly.com/app/store/api/v1/seller-map/lat/{lat}/lng/{lng}?page=0&per_page=100'
         var sellerMapComponents = URLComponents()
             sellerMapComponents.scheme = "https"
             sellerMapComponents.host = "weebly.com"
             sellerMapComponents.path = "/app/store/api/v1/seller-map/lat/\(coordinate.latitude)/lng/\(coordinate.longitude)"
             sellerMapComponents.queryItems = [
                 URLQueryItem(name: "page", value: "\(0)"), // not gonna care about this now
-                URLQueryItem(name: "per_page", value: "\(100)")
+                URLQueryItem(name: "per_page", value: "\(120)")
             ]
         
         guard let url = sellerMapComponents.url else {
@@ -143,28 +146,36 @@ struct SellerResultsListView: View {
         }
         
         self.url = url
+        self.coordinate = coordinate
     }
     
     var body: some View {
-        
         Group {
-            switch task.result {
-            case .success(let model):
-                List(model.data) { store in
+            switch multiSearch.results {
+            case .success(let models):
+                List(models) { model in
                     Button {
                         selectedStore = SellerAppData(
-                            siteId: store.siteID,
-                            userId: store.ownerID,
-                            city: store.city,
-                            displayName: store.displayName
+                            siteId: model.siteId,
+                            userId: model.userId,
+                            city: model.city,
+                            displayName: model.displayName,
+                            merchantLogoURL: model.merchantLogoURL,
+                            giftCardBusinessType: model.businessType,
+                            sellerType: model.sellerType
                         )
                     } label: {
                         FavoriteTileView(store: SellerAppData(
-                            siteId: store.siteID,
-                            userId: store.ownerID,
-                            city: store.city,
-                            displayName: store.displayName
+                            siteId: model.siteId,
+                            userId: model.userId,
+                            city: model.city,
+                            displayName: model.displayName,
+                            merchantLogoURL: model.merchantLogoURL,
+                            giftCardBusinessType: model.businessType,
+                            sellerType: model.sellerType
                         ))
+                        // todo implement paging by inserting a view somewhere in list whose appearance triggers another page
+                        // track how many pages we have done
                     }
                 }
             case .failure(let error):
@@ -172,7 +183,8 @@ struct SellerResultsListView: View {
             case .none:
                 ProgressView().onAppear(perform: {
                     withAnimation {
-                        self.task.fetchModel(withURL: self.url)
+                        self.multiSearch.search(coordinate: self.coordinate)
+
                     }
                 })
             }
