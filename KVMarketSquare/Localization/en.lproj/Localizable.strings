@@ -20,3 +20,13 @@
 // Search
 "SearchViewTitle" = "Market Square";
 "SearchFieldTitle" = "Search address";
+
+// Settings
+"SettingsViewThemeTitle" = "Theme";
+"SettingsThemeSystemTitle" = "System";
+"SettingsThemeSystemDescription" = "Use system settings";
+"SettingsThemeDarkModeTitle" = "Enable Dark Mode";
+"SettingsThemeDarkModeDescription" = "Use dark interface";
+"SettingsThemeSnowTitle" = "Let It Snow";
+"SettingsThemeSnowDescription" = "Only at night...";
+

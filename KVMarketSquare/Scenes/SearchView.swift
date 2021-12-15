@@ -19,29 +19,31 @@ struct SearchView: View {
     
     var body: some View {
         NavigationView {
-            Form {
-                Section {
-                    TextField(Localization.key(.SearchFieldTitle), text: $mapSearch.searchTerm)
-                        .modifier(ClearButton(text: $mapSearch.searchTerm, results: $mapSearch.locationResults))
-                        .disableAutocorrection(true)
-                }
-                Section {
-                    ForEach(mapSearch.locationResults, id: \.self) { location in
-                        NavigationLink(destination:
-                                        SellerSearchResultsView(locationResult: location).environmentObject(appData)) {
-                                            VStack(alignment: .leading) {
-                                                Text(location.title)
-                                                Text(location.subtitle)
-                                                    .font(.system(.caption)
-                                                )
-                                            }
-                                        }
+            HolidayWrapperView {
+                Form {
+                    Section {
+                        TextField(Localization.key(.SearchFieldTitle), text: $mapSearch.searchTerm)
+                            .modifier(ClearButton(text: $mapSearch.searchTerm, results: $mapSearch.locationResults))
+                            .disableAutocorrection(true)
+                    }
+                    Section {
+                        ForEach(mapSearch.locationResults, id: \.self) { location in
+                            NavigationLink(destination:
+                                            SellerSearchResultsView(locationResult: location).environmentObject(appData)) {
+                                                VStack(alignment: .leading) {
+                                                    Text(location.title)
+                                                    Text(location.subtitle)
+                                                        .font(.system(.caption)
+                                                    )
+                                                }
+                            }
+                        }
                     }
                 }
-            }
-            .navigationTitle(Localization.key(.SearchViewTitle))
-            .toolbar {
-                NavBackButton(type: .close, dismissAction: dismiss)
+                .navigationTitle(Localization.key(.SearchViewTitle))
+                .toolbar {
+                    NavBackButton(type: .close, dismissAction: dismiss)
+                }
             }
         }
     }
@@ -88,7 +90,9 @@ struct SellerSearchResultsView: View {
             if viewModel.isLoading {
                 Text("Loading...")
             } else {
-                SellerResultsListView(coordinate: viewModel.coordinate)?.environmentObject(appData)
+                HolidayWrapperView {
+                    SellerResultsListView(coordinate: viewModel.coordinate)?.environmentObject(appData)
+                }
             }
         }
         .onAppear {

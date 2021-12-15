@@ -13,6 +13,7 @@ class AppData: ObservableObject {
     @Published(key: "isAutomaticColorScheme") var isAutomaticColorScheme: Bool = true
     @Published(key: "isDarkmode") var isDarkMode: Bool = false
     @Published(key: "userInterfaceStyle") var userInterfaceStyle: UserInterfaceStyle = UserInterfaceStyle.system
+    @Published(key: "isLettingItSnow") var isLettingItSnow: Bool = true
 }
 
 struct SellerAppData: Identifiable, Hashable, Codable {

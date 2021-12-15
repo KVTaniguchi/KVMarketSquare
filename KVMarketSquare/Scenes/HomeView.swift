@@ -13,22 +13,24 @@ struct HomeView: View {
     @State private var selectedStore: SellerAppData?
     
     var body: some View {
-        contentView
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button(
-                    action: {
-                        showingSearchSheet.toggle()
-                    }, label: {
-                        Image(systemName: "magnifyingglass")
-                            .renderingMode(.template)
-                            .tint(.blue)
-                    }
-                )
+        HolidayWrapperView {
+            contentView
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(
+                        action: {
+                            showingSearchSheet.toggle()
+                        }, label: {
+                            Image(systemName: "magnifyingglass")
+                                .renderingMode(.template)
+                                .tint(.blue)
+                        }
+                    )
+                }
             }
-        }
-        .fullScreenCover(isPresented: $showingSearchSheet) {
-            SearchView() { _ in }.environmentObject(appData)
+            .fullScreenCover(isPresented: $showingSearchSheet) {
+                SearchView() { _ in }.environmentObject(appData)
+            }
         }
     }
     

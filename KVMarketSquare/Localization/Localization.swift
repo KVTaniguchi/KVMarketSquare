@@ -32,4 +32,9 @@ enum Localization: String {
     
     // Search
     case SearchViewTitle, SearchFieldTitle
+    
+    // Settings
+    case SettingsViewThemeTitle, SettingsThemeSystemTitle, SettingsThemeSystemDescription, SettingsThemeDarkModeTitle, SettingsThemeDarkModeDescription, SettingsThemeSnowTitle, SettingsThemeSnowDescription
+
+
 }
