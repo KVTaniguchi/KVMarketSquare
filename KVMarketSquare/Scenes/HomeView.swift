@@ -10,7 +10,6 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject private var appData: AppData
     @State private var showingSearchSheet = false
-    @Environment(\.colorScheme) var currentMode
     
     var body: some View {
         contentView
@@ -22,7 +21,7 @@ struct HomeView: View {
                     }, label: {
                         Image(systemName: "magnifyingglass")
                             .renderingMode(.template)
-                            .foregroundColor(currentMode == .dark ? .white : .black)
+                            .tint(.blue)
                     }
                 )
             }
@@ -76,7 +75,6 @@ struct HomeView: View {
                 Text(Localization.key(.ShopListTitle))
                     .font(.body)
                     .bold()
-                    .foregroundColor(.black)
                     .textCase(.none)
             }
         }

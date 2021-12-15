@@ -46,6 +46,7 @@ struct SearchView: View {
                     dismiss()
                 }, label: {
                     Image(systemName: "xmark")
+                        .tint(.blue)
                 })
             }
         }
@@ -116,7 +117,7 @@ struct SellerSearchResultsView: View {
                     action: {
                         showingSearchSheet.toggle()
                     }
-                )
+                ).tint(.blue)
             }
         }
     }
