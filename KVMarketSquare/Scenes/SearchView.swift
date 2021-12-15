@@ -42,12 +42,7 @@ struct SearchView: View {
             }
             .navigationTitle(Localization.key(.SearchViewTitle))
             .toolbar {
-                Button(action: {
-                    dismiss()
-                }, label: {
-                    Image(systemName: "xmark")
-                        .tint(.blue)
-                })
+                NavBackButton(type: .close, dismissAction: dismiss)
             }
         }
     }
@@ -126,6 +121,7 @@ struct SellerSearchResultsView: View {
 struct SellerResultsListView: View {
     @StateObject var task: FetchTask<SellerFromCoordsResult> = FetchTask<SellerFromCoordsResult>()
     @EnvironmentObject private var appData: AppData
+    @State private var selectedStore: SellerAppData?
     
     private let url: URL
     
@@ -150,39 +146,39 @@ struct SellerResultsListView: View {
     }
     
     var body: some View {
-        switch task.result {
-        case .success(let model):
-            List(model.data) { store in
-                Button {
-                    let sellerStore = SellerAppData(
-                        siteId: store.siteID,
-                        userId: store.ownerID,
-                        city: store.city,
-                        displayName: store.displayName
-                    )
-                    if appData.favoriteShops.contains(sellerStore) {
-                        appData.favoriteShops.remove(sellerStore)
-                    } else {
-                        appData.favoriteShops.insert(sellerStore)
-                    }
-                } label: {
-                    HStack {
-                        Text(store.displayName)
-                        if appData.favoriteShops.contains(where: { $0.userId == store.ownerID }) {
-                            Spacer()
-                            Image(systemName: "checkmark.circle")
-                        }
+        
+        Group {
+            switch task.result {
+            case .success(let model):
+                List(model.data) { store in
+                    Button {
+                        selectedStore = SellerAppData(
+                            siteId: store.siteID,
+                            userId: store.ownerID,
+                            city: store.city,
+                            displayName: store.displayName
+                        )
+                    } label: {
+                        FavoriteTileView(store: SellerAppData(
+                            siteId: store.siteID,
+                            userId: store.ownerID,
+                            city: store.city,
+                            displayName: store.displayName
+                        ))
                     }
                 }
+            case .failure(let error):
+                Text(String(describing: error))
+            case .none:
+                ProgressView().onAppear(perform: {
+                    withAnimation {
+                        self.task.fetchModel(withURL: self.url)
+                    }
+                })
             }
-        case .failure(let error):
-            Text(String(describing: error))
-        case .none:
-            ProgressView().onAppear(perform: {
-                withAnimation {
-                    self.task.fetchModel(withURL: self.url)
-                }
-            })
+        }
+        .fullScreenCover(item: $selectedStore) { store in
+            StoreWebView(store: store)
         }
     }
 }

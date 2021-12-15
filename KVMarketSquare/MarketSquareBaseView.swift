@@ -3,6 +3,7 @@ import SwiftUI
 struct StoreWebView: View {
     let store: SellerAppData
     @StateObject var task = PostTask<URLStoresResponse>()
+    @Environment(\.dismiss) var dismiss
     private let request: URLRequest
     
     // start fetching on init
@@ -29,19 +30,21 @@ struct StoreWebView: View {
         switch task.result {
         case .success(let response):
             if let url = responseWebsite(from: response) {
-                WebView(url: url)
-                    .navigationBarTitleDisplayMode(.inline)
-                    .navigationBarTitle(store.displayName ?? "")
-                    .navigationBarBackButtonHidden(true)
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarLeading) {
-                            NavBackButton()
+                NavigationView {
+                    WebView(url: url)
+                        .navigationBarTitle(store.displayName ?? "")
+                        .navigationBarTitleDisplayMode(.inline)
+                        .navigationBarBackButtonHidden(true)
+                        .toolbar {
+                            ToolbarItem(placement: .navigationBarLeading) {
+                                NavBackButton(type: .close, dismissAction: dismiss)
+                            }
+                            
+                            ToolbarItem(placement: .navigationBarTrailing) {
+                                FavoriteButton(sellerStore: store)
+                            }
                         }
-                        
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            FavoriteButton(sellerStore: store)
-                        }
-                    }
+                }
             } else {
                 Text("Sorry, this seller does not have a Square website")
             }

@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject private var appData: AppData
     @State private var showingSearchSheet = false
+    @State private var selectedStore: SellerAppData?
     
     var body: some View {
         contentView
@@ -60,8 +61,8 @@ struct HomeView: View {
         List {
             Section {
                 ForEach(Array(appData.favoriteShops)) { store in
-                    NavigationLink {
-                        StoreWebView(store: store)
+                    Button {
+                        selectedStore = store
                     } label: {
                         FavoriteTileView(store: store)
                     }
@@ -77,6 +78,9 @@ struct HomeView: View {
                     .bold()
                     .textCase(.none)
             }
+        }
+        .fullScreenCover(item: $selectedStore) { store in
+            StoreWebView(store: store)
         }
     }
 }
