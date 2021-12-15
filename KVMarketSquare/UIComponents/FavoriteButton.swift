@@ -9,7 +9,6 @@ import SwiftUI
 
 struct FavoriteButton: View {
     @EnvironmentObject private var appData: AppData
-    @Environment(\.colorScheme) var currentMode
     var sellerStore: SellerAppData
     
     var body: some View {
@@ -24,7 +23,7 @@ struct FavoriteButton: View {
             }, label: {
                 Image(systemName: $appData.favoriteShops.wrappedValue.contains(sellerStore) ? "heart.fill" : "heart")
                     .renderingMode(.template)
-                    .foregroundColor(currentMode == .dark ? .white : .black)
+                    .tint(.blue)
             }
         )
     }

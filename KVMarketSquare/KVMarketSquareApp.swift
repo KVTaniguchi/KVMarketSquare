@@ -15,6 +15,10 @@ struct KVMarketSquareApp: App {
         WindowGroup {
             MainTabView()
                 .environmentObject(appData)
+                .onAppear() {
+                    // fix for bug where system is in dark mode but all toggles are off but it is still in dark mode
+                    Utilities().overrideDisplayMode(appData.userInterfaceStyle)
+                }
         }
     }
 }

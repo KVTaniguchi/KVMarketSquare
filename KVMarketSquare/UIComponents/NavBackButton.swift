@@ -9,7 +9,6 @@ import SwiftUI
 
 struct NavBackButton: View {
     @Environment(\.dismiss) var dismiss
-    @Environment(\.colorScheme) var currentMode
     
     var body: some View {
         Button(
@@ -18,7 +17,7 @@ struct NavBackButton: View {
             }, label: {
                 Image(systemName: "chevron.left")
                     .renderingMode(.template)
-                    .foregroundColor(currentMode == .dark ? .white : .black)
+                    .tint(.blue)
             }
         )
     }
