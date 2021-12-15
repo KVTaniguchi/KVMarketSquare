@@ -4,6 +4,7 @@
 //   let sellerFromCoordsResult = try? newJSONDecoder().decode(SellerFromCoordsResult.self, from: jsonData)
 
 import Foundation
+import SwiftUI
 
 // MARK: - SellerFromCoordsResult
 struct SellerFromCoordsResult: Codable {
@@ -80,6 +81,15 @@ enum CountryCode: String, Codable {
 enum SellerType: String, Codable {
     case foodAndDrink = "food_and_drink"
     case retail = "retail"
+    
+    var image: Image {
+        switch self {
+        case .foodAndDrink:
+            return Image(systemName: "fork.knife")
+        case .retail:
+            return Image(systemName: "gift")
+        }
+    }
 }
 
 // MARK: - Meta

@@ -127,18 +127,21 @@ struct SellerResultsListView: View {
     @StateObject var task: FetchTask<SellerFromCoordsResult> = FetchTask<SellerFromCoordsResult>()
     @EnvironmentObject private var appData: AppData
     
-    private let url: URL
+    @StateObject var multiSearch: SellerMultiSearchFetcher = SellerMultiSearchFetcher()
     
-//    'https://www.weebly.com/app/store/api/v1/seller-map/lat/44.9045212/lng/-93.173926?page=0&per_page=100'
+    private let url: URL
+    private let coordinate: CLLocationCoordinate2D
     
     init?(coordinate : CLLocationCoordinate2D) {
+        // todo implement paging
+        //    'https://www.weebly.com/app/store/api/v1/seller-map/lat/{lat}/lng/{lng}?page=0&per_page=100'
         var sellerMapComponents = URLComponents()
             sellerMapComponents.scheme = "https"
             sellerMapComponents.host = "weebly.com"
             sellerMapComponents.path = "/app/store/api/v1/seller-map/lat/\(coordinate.latitude)/lng/\(coordinate.longitude)"
             sellerMapComponents.queryItems = [
                 URLQueryItem(name: "page", value: "\(0)"), // not gonna care about this now
-                URLQueryItem(name: "per_page", value: "\(100)")
+                URLQueryItem(name: "per_page", value: "\(120)")
             ]
         
         guard let url = sellerMapComponents.url else {
@@ -147,18 +150,22 @@ struct SellerResultsListView: View {
         }
         
         self.url = url
+        self.coordinate = coordinate
     }
     
     var body: some View {
-        switch task.result {
-        case .success(let model):
-            List(model.data) { store in
+        switch multiSearch.results {
+        case .success(let models):
+            List(models) { model in
                 Button {
                     let sellerStore = SellerAppData(
-                        siteId: store.siteID,
-                        userId: store.ownerID,
-                        city: store.city,
-                        displayName: store.displayName
+                        siteId: model.siteId,
+                        userId: model.userId,
+                        city: model.city,
+                        displayName: model.displayName,
+                        merchantLogoURL: model.merchantLogoURL,
+                        giftCardBusinessType: model.businessType,
+                        sellerType: model.sellerType
                     )
                     if appData.favoriteShops.contains(sellerStore) {
                         appData.favoriteShops.remove(sellerStore)
@@ -167,20 +174,22 @@ struct SellerResultsListView: View {
                     }
                 } label: {
                     HStack {
-                        Text(store.displayName)
-                        if appData.favoriteShops.contains(where: { $0.userId == store.ownerID }) {
+                        Text(model.displayName)
+                        if appData.favoriteShops.contains(where: { $0.userId == model.userId }) {
                             Spacer()
                             Image(systemName: "checkmark.circle")
                         }
                     }
                 }
+                // todo implement paging by inserting a view somewhere in list whose appearance triggers another page
+                // track how many pages we have done
             }
         case .failure(let error):
             Text(String(describing: error))
         case .none:
             ProgressView().onAppear(perform: {
                 withAnimation {
-                    self.task.fetchModel(withURL: self.url)
+                    self.multiSearch.search(coordinate: self.coordinate)
                 }
             })
         }

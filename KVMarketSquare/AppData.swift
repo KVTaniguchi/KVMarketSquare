@@ -21,18 +21,27 @@ struct SellerAppData: Identifiable, Hashable, Codable {
     let userId: String
     let city: String
     let displayName: String?
+    let merchantLogoURL: URL?
+    let giftCardBusinessType: String?
+    let sellerType: SellerType?
     
     init(
         siteId: String,
         userId: String,
         city: String,
-        displayName: String? = nil
+        displayName: String? = nil,
+        merchantLogoURL: URL? = nil,
+        giftCardBusinessType: String? = nil,
+        sellerType: SellerType? = nil
     ) {
         self.siteId = siteId
         self.userId = userId
         self.city = city
         self.displayName = displayName
         self.id = userId
+        self.merchantLogoURL = merchantLogoURL
+        self.giftCardBusinessType = giftCardBusinessType
+        self.sellerType = sellerType
     }
     
     static var preview = SellerAppData(
