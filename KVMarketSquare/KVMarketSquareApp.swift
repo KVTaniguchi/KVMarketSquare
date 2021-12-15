@@ -10,6 +10,10 @@ import SwiftUI
 @main
 struct KVMarketSquareApp: App {
     @StateObject var appData = AppData()
+    
+    init() {
+        UITableView.appearance().backgroundColor = .clear
+    }
 
     var body: some Scene {
         WindowGroup {

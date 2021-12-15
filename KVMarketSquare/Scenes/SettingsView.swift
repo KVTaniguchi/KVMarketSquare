@@ -12,31 +12,36 @@ struct SettingsView: View {
     var utilities = Utilities()
     
     var body: some View {
-        List {
-            Section(header: Text("Theme")) {
-                SettingsSectionView(title: "System", description: "Use system settings") {
-                    Toggle(isOn: $appData.isAutomaticColorScheme) {}
-                    .onChange(of: appData.isAutomaticColorScheme) { _ in
-                        setUserInterfaceStyle()
-                    }
-                    .tint(.green)
-                }
-                
-                if !appData.isAutomaticColorScheme {
-                    SettingsSectionView(title: "Enable Dark Mode", description: "Use dark interface") {
-                        Toggle(isOn: $appData.isDarkMode) {}
-                        .onChange(of: appData.isDarkMode) { _ in
+        HolidayWrapperView {
+            List {
+                Section(header: Text(Localization.key(.SettingsViewThemeTitle))) {
+                    SettingsSectionView(title: Localization.key(.SettingsThemeSystemTitle), description: Localization.key(.SettingsThemeSystemDescription)) {
+                        Toggle(isOn: $appData.isAutomaticColorScheme) {}
+                        .onChange(of: appData.isAutomaticColorScheme) { _ in
                             setUserInterfaceStyle()
                         }
                         .tint(.green)
                     }
+                    
+                    if !appData.isAutomaticColorScheme {
+                        SettingsSectionView(title: Localization.key(.SettingsThemeDarkModeTitle), description: Localization.key(.SettingsThemeDarkModeDescription)) {
+                            Toggle(isOn: $appData.isDarkMode) {}
+                            .onChange(of: appData.isDarkMode) { _ in
+                                setUserInterfaceStyle()
+                            }
+                            .tint(.green)
+                        }
+                    }
+                    SettingsSectionView(title: Localization.key(.SettingsThemeSnowTitle), description: Localization.key(.SettingsThemeSnowDescription)) {
+                        Toggle(isOn: $appData.isLettingItSnow) {}
+                        .tint(.green)
+                    }
                 }
-                
             }
+            .onChange(of: appData.userInterfaceStyle, perform: { value in
+                utilities.overrideDisplayMode(appData.userInterfaceStyle)
+            })
         }
-        .onChange(of: appData.userInterfaceStyle, perform: { value in
-            utilities.overrideDisplayMode(appData.userInterfaceStyle)
-        })
     }
     
     private func setUserInterfaceStyle() {
@@ -62,9 +67,8 @@ struct SettingsSectionView<Content>: View where Content : View {
         HStack(alignment: .center) {
             VStack(alignment: .leading) {
                 Text(title)
-                    .font(.subheadline)
                 Text(description)
-                    .font(.footnote)
+                    .font(.caption)
             }
             self.content()
         }
