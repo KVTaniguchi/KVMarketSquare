@@ -11,7 +11,6 @@ import SwiftUI
 
 
 struct SearchView: View {
-    @Binding var showingSearchSheet: Bool
     @StateObject private var mapSearch = MapSearch()
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject private var appData: AppData
@@ -29,7 +28,7 @@ struct SearchView: View {
                 Section {
                     ForEach(mapSearch.locationResults, id: \.self) { location in
                         NavigationLink(destination:
-                                        SellerSearchResultsView(locationResult: location, showingSearchSheet: $showingSearchSheet).environmentObject(appData)) {
+                                        SellerSearchResultsView(locationResult: location).environmentObject(appData)) {
                                             VStack(alignment: .leading) {
                                                 Text(location.title)
                                                 Text(location.subtitle)
@@ -42,12 +41,7 @@ struct SearchView: View {
             }
             .navigationTitle(Localization.key(.SearchViewTitle))
             .toolbar {
-                Button(action: {
-                    dismiss()
-                }, label: {
-                    Image(systemName: "xmark")
-                        .tint(.blue)
-                })
+                NavBackButton(type: .close, dismissAction: dismiss)
             }
         }
     }
@@ -81,13 +75,12 @@ class AddressToCoordinateResolver : ObservableObject {
 
 struct SellerSearchResultsView: View {
     var locationResult : MKLocalSearchCompletion
-    @Binding var showingSearchSheet: Bool
     @StateObject private var viewModel = AddressToCoordinateResolver()
     @EnvironmentObject private var appData: AppData
+    @Environment(\.dismiss) var dismiss
 
-    init(locationResult : MKLocalSearchCompletion, showingSearchSheet: Binding<Bool>) {
+    init(locationResult : MKLocalSearchCompletion) {
         self.locationResult = locationResult
-        self._showingSearchSheet = showingSearchSheet
     }
 
     var body: some View {
@@ -113,11 +106,15 @@ struct SellerSearchResultsView: View {
             }
 
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button("Save",
+                Button(
                     action: {
-                        showingSearchSheet.toggle()
+                        UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
+                    }, label: {
+                        Image(systemName: "xmark")
+                            .renderingMode(.template)
+                            .tint(.blue)
                     }
-                ).tint(.blue)
+                )
             }
         }
     }
@@ -126,6 +123,7 @@ struct SellerSearchResultsView: View {
 struct SellerResultsListView: View {
     @StateObject var task: FetchTask<SellerFromCoordsResult> = FetchTask<SellerFromCoordsResult>()
     @EnvironmentObject private var appData: AppData
+    @State private var selectedStore: SellerAppData?
     
     @StateObject var multiSearch: SellerMultiSearchFetcher = SellerMultiSearchFetcher()
     
@@ -154,44 +152,47 @@ struct SellerResultsListView: View {
     }
     
     var body: some View {
-        switch multiSearch.results {
-        case .success(let models):
-            List(models) { model in
-                Button {
-                    let sellerStore = SellerAppData(
-                        siteId: model.siteId,
-                        userId: model.userId,
-                        city: model.city,
-                        displayName: model.displayName,
-                        merchantLogoURL: model.merchantLogoURL,
-                        giftCardBusinessType: model.businessType,
-                        sellerType: model.sellerType
-                    )
-                    if appData.favoriteShops.contains(sellerStore) {
-                        appData.favoriteShops.remove(sellerStore)
-                    } else {
-                        appData.favoriteShops.insert(sellerStore)
-                    }
-                } label: {
-                    HStack {
-                        Text(model.displayName)
-                        if appData.favoriteShops.contains(where: { $0.userId == model.userId }) {
-                            Spacer()
-                            Image(systemName: "checkmark.circle")
-                        }
+        Group {
+            switch multiSearch.results {
+            case .success(let models):
+                List(models) { model in
+                    Button {
+                        selectedStore = SellerAppData(
+                            siteId: model.siteId,
+                            userId: model.userId,
+                            city: model.city,
+                            displayName: model.displayName,
+                            merchantLogoURL: model.merchantLogoURL,
+                            giftCardBusinessType: model.businessType,
+                            sellerType: model.sellerType
+                        )
+                    } label: {
+                        FavoriteTileView(store: SellerAppData(
+                            siteId: model.siteId,
+                            userId: model.userId,
+                            city: model.city,
+                            displayName: model.displayName,
+                            merchantLogoURL: model.merchantLogoURL,
+                            giftCardBusinessType: model.businessType,
+                            sellerType: model.sellerType
+                        ))
+                        // todo implement paging by inserting a view somewhere in list whose appearance triggers another page
+                        // track how many pages we have done
                     }
                 }
-                // todo implement paging by inserting a view somewhere in list whose appearance triggers another page
-                // track how many pages we have done
+            case .failure(let error):
+                Text(String(describing: error))
+            case .none:
+                ProgressView().onAppear(perform: {
+                    withAnimation {
+                        self.multiSearch.search(coordinate: self.coordinate)
+
+                    }
+                })
             }
-        case .failure(let error):
-            Text(String(describing: error))
-        case .none:
-            ProgressView().onAppear(perform: {
-                withAnimation {
-                    self.multiSearch.search(coordinate: self.coordinate)
-                }
-            })
+        }
+        .fullScreenCover(item: $selectedStore) { store in
+            StoreWebView(store: store)
         }
     }
 }

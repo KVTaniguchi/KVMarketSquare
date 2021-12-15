@@ -7,15 +7,25 @@
 
 import SwiftUI
 
+enum NavBackType {
+    case back, close
+}
+
 struct NavBackButton: View {
     @Environment(\.dismiss) var dismiss
+    var type: NavBackType = .back
+    var dismissAction: DismissAction?
     
     var body: some View {
         Button(
             action: {
-                dismiss()
+                if let dismissAction = dismissAction {
+                    dismissAction()
+                } else {
+                    dismiss()
+                }
             }, label: {
-                Image(systemName: "chevron.left")
+                Image(systemName: type == .back ? "chevron.left" : "xmark")
                     .renderingMode(.template)
                     .tint(.blue)
             }

@@ -20,8 +20,7 @@ class Utilities {
         } else {
             userInterfaceStyle = .unspecified
         }
-    
-        UIApplication.shared.windows.first?.overrideUserInterfaceStyle = userInterfaceStyle
+        UIApplication.shared.keyWindow?.overrideUserInterfaceStyle =  userInterfaceStyle
     }
 }
 

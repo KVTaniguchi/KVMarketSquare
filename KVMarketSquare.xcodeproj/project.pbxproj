@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6C1E7D26276937E60083293D /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C1E7D25276937E60083293D /* Launch Screen.storyboard */; };
+		6C1E7D28276A7D350083293D /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1E7D27276A7D350083293D /* UIApplication.swift */; };
 		6C70F5072767CC1000884777 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C70F5062767CC1000884777 /* HomeView.swift */; };
 		6C70F5092767CC3200884777 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C70F5082767CC3200884777 /* SettingsView.swift */; };
 		6C70F50C2767CDAF00884777 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C70F50B2767CDAF00884777 /* View.swift */; };
@@ -56,6 +57,7 @@
 
 /* Begin PBXFileReference section */
 		6C1E7D25276937E60083293D /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		6C1E7D27276A7D350083293D /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		6C70F5062767CC1000884777 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		6C70F5082767CC3200884777 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		6C70F50B2767CDAF00884777 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = View.swift; path = ../View.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				6C70F50B2767CDAF00884777 /* View.swift */,
 				6C70F5192767F2C000884777 /* Published.swift */,
 				C294F15827693449005AEDFD /* Set.swift */,
+				6C1E7D27276A7D350083293D /* UIApplication.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -206,7 +209,6 @@
 				BDB415A72763043A00535176 /* KVWebView.swift */,
 				BDB415AB27630B1100535176 /* MapSearch.swift */,
 				BDB415B12767AC8D00535176 /* SellerFromCoordResult.swift */,
-				C294F1522767F221005AEDFD /* Favorites.swift */,
 				6C1E7D25276937E60083293D /* Launch Screen.storyboard */,
 				C294F1522767F221005AEDFD /* AppData.swift */,
 				C294F15A27698192005AEDFD /* Utilities.swift */,
@@ -385,6 +387,7 @@
 				BD1E5CED275B2141009587A2 /* SearchView.swift in Sources */,
 				6C70F51A2767F2C000884777 /* Published.swift in Sources */,
 				6C70F5072767CC1000884777 /* HomeView.swift in Sources */,
+				6C1E7D28276A7D350083293D /* UIApplication.swift in Sources */,
 				BDB415AC27630B1100535176 /* MapSearch.swift in Sources */,
 				C294F1572767F3DD005AEDFD /* FavoriteTileView.swift in Sources */,
 				BD1E5D17275BCE18009587A2 /* SquareSellerSearchResult.swift in Sources */,

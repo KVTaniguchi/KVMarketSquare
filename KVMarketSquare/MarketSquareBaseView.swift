@@ -3,6 +3,7 @@ import SwiftUI
 struct StoreWebView: View {
     let store: SellerAppData
     @StateObject var task = PostTask<URLStoresResponse>()
+    @Environment(\.dismiss) var dismiss
     private let request: URLRequest
     
     // start fetching on init
@@ -26,33 +27,37 @@ struct StoreWebView: View {
     }
     
     var body: some View {
-        switch task.result {
-        case .success(let response):
-            if let url = responseWebsite(from: response) {
-                WebView(url: url)
-                    .navigationBarTitleDisplayMode(.inline)
-                    .navigationBarTitle(store.displayName ?? "")
-                    .navigationBarBackButtonHidden(true)
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarLeading) {
-                            NavBackButton()
-                        }
-                        
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            FavoriteButton(sellerStore: store)
-                        }
+        NavigationView {
+            Group {
+                switch task.result {
+                case .success(let response):
+                    if let url = responseWebsite(from: response) {
+                        WebView(url: url)
+                    } else {
+                        Text("Sorry, this seller does not have a Square website")
                     }
-            } else {
-                Text("Sorry, this seller does not have a Square website")
-            }
-        case .failure(let error):
-            Text(String(describing: error))
-        case .none:
-            ProgressView().onAppear(perform: {
-                withAnimation {
-                    self.task.fetchModel(request: self.request)
+                case .failure(let error):
+                    Text(String(describing: error))
+                case .none:
+                    ProgressView().onAppear(perform: {
+                        withAnimation {
+                            self.task.fetchModel(request: self.request)
+                        }
+                    })
                 }
-            })
+            }
+            .navigationBarTitle(store.displayName ?? "")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    NavBackButton(type: .close, dismissAction: dismiss)
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    FavoriteButton(sellerStore: store)
+                }
+            }
         }
     }
     
