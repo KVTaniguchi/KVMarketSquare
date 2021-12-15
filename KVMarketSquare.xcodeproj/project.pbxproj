@@ -31,9 +31,10 @@
 		BDB415AC27630B1100535176 /* MapSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB415AB27630B1100535176 /* MapSearch.swift */; };
 		BDB415AE2766ED9D00535176 /* MarketSquareBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB415AD2766ED9D00535176 /* MarketSquareBaseView.swift */; };
 		BDB415B22767AC8D00535176 /* SellerFromCoordResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB415B12767AC8D00535176 /* SellerFromCoordResult.swift */; };
-		C294F1532767F221005AEDFD /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294F1522767F221005AEDFD /* Favorites.swift */; };
+		C294F1532767F221005AEDFD /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294F1522767F221005AEDFD /* AppData.swift */; };
 		C294F1572767F3DD005AEDFD /* FavoriteTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294F1562767F3DD005AEDFD /* FavoriteTileView.swift */; };
 		C294F15927693449005AEDFD /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294F15827693449005AEDFD /* Set.swift */; };
+		C294F15B27698192005AEDFD /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294F15A27698192005AEDFD /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,9 +82,10 @@
 		BDB415AB27630B1100535176 /* MapSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearch.swift; sourceTree = "<group>"; };
 		BDB415AD2766ED9D00535176 /* MarketSquareBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketSquareBaseView.swift; sourceTree = "<group>"; };
 		BDB415B12767AC8D00535176 /* SellerFromCoordResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerFromCoordResult.swift; sourceTree = "<group>"; };
-		C294F1522767F221005AEDFD /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
+		C294F1522767F221005AEDFD /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		C294F1562767F3DD005AEDFD /* FavoriteTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTileView.swift; sourceTree = "<group>"; };
 		C294F15827693449005AEDFD /* Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
+		C294F15A27698192005AEDFD /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +208,8 @@
 				BDB415B12767AC8D00535176 /* SellerFromCoordResult.swift */,
 				C294F1522767F221005AEDFD /* Favorites.swift */,
 				6C1E7D25276937E60083293D /* Launch Screen.storyboard */,
+				C294F1522767F221005AEDFD /* AppData.swift */,
+				C294F15A27698192005AEDFD /* Utilities.swift */,
 			);
 			path = KVMarketSquare;
 			sourceTree = "<group>";
@@ -372,10 +376,11 @@
 				BDB415AE2766ED9D00535176 /* MarketSquareBaseView.swift in Sources */,
 				6C70F5102767DF5F00884777 /* Localization.swift in Sources */,
 				6C9B66E42768F3840028F2A4 /* FavoriteButton.swift in Sources */,
-				C294F1532767F221005AEDFD /* Favorites.swift in Sources */,
+				C294F1532767F221005AEDFD /* AppData.swift in Sources */,
 				BDB415B22767AC8D00535176 /* SellerFromCoordResult.swift in Sources */,
 				BD1E5D15275BC9AE009587A2 /* KVFetchTask.swift in Sources */,
 				6C9B66E22768F28F0028F2A4 /* NavBackButton.swift in Sources */,
+				C294F15B27698192005AEDFD /* Utilities.swift in Sources */,
 				BDB415A82763043A00535176 /* KVWebView.swift in Sources */,
 				BD1E5CED275B2141009587A2 /* SearchView.swift in Sources */,
 				6C70F51A2767F2C000884777 /* Published.swift in Sources */,

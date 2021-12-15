@@ -8,8 +8,11 @@
 import Foundation
 
 class AppData: ObservableObject {
-    // this should be of type some link to a shop identifier
     @Published(key: "favoriteShops") var favoriteShops: Set<SellerAppData> = []
+    
+    @Published(key: "isAutomaticColorScheme") var isAutomaticColorScheme: Bool = true
+    @Published(key: "isDarkmode") var isDarkMode: Bool = false
+    @Published(key: "userInterfaceStyle") var userInterfaceStyle: UserInterfaceStyle = UserInterfaceStyle.system
 }
 
 struct SellerAppData: Identifiable, Hashable, Codable {
