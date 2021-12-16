@@ -37,6 +37,7 @@ struct SellerAppData: Identifiable, Hashable, Codable {
     let merchantLogoURL: URL?
     let giftCardBusinessType: String?
     let sellerType: SellerType?
+    let addressString: String
     
     init(store: SellerSearchResultViewModel) {
         self.siteId = store.siteId
@@ -59,6 +60,7 @@ struct SellerAppData: Identifiable, Hashable, Codable {
         self.merchantLogoURL = store.merchantLogoURL
         self.giftCardBusinessType = store.giftCardBusinessType
         self.sellerType = store.sellerType
+        self.addressString = [store.street, store.street2, store.city, store.postalCode, store.region].joined(separator: " ")
     }
     
     static var preview = SellerAppData(store: SellerSearchResultViewModel(store: Datum.preview))

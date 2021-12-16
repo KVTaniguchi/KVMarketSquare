@@ -21,6 +21,16 @@
 "SearchViewTitle" = "Market Square";
 "SearchFieldTitle" = "Search address";
 
+// Store Detail
+"OpenInBrowser" = "Open in browser";
+"ServiceDevlieryTitle" = "Delivery";
+"ServicePickupTitle" = "Pickup";
+"ServiceCurbesideTitle" = "Curbside Pickup";
+"ServiceScheduleTitle" = "Schedule Pickup";
+"ServicePreparedTitle" = "Prepared Status";
+"ServiceSectionTitle" = "Available services";
+
+
 // Settings
 "SettingsViewThemeTitle" = "Theme";
 "SettingsThemeSystemTitle" = "System";
@@ -29,4 +39,3 @@
 "SettingsThemeDarkModeDescription" = "Use dark interface";
 "SettingsThemeSnowTitle" = "Let It Snow";
 "SettingsThemeSnowDescription" = "Only at night...";
-
