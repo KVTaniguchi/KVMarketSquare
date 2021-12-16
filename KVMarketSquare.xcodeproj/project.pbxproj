@@ -40,6 +40,7 @@
 		BDB415AC27630B1100535176 /* MapSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB415AB27630B1100535176 /* MapSearch.swift */; };
 		BDB415AE2766ED9D00535176 /* MarketSquareBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB415AD2766ED9D00535176 /* MarketSquareBaseView.swift */; };
 		BDB415B22767AC8D00535176 /* SellerFromCoordResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB415B12767AC8D00535176 /* SellerFromCoordResult.swift */; };
+		C266C910276A9928000BA2CE /* Snowfall.sks in Resources */ = {isa = PBXBuildFile; fileRef = C266C90F276A9928000BA2CE /* Snowfall.sks */; };
 		C2720288276A6EC2002F5A79 /* HolidayWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2720287276A6EC2002F5A79 /* HolidayWrapperView.swift */; };
 		C294F1532767F221005AEDFD /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294F1522767F221005AEDFD /* AppData.swift */; };
 		C294F1572767F3DD005AEDFD /* FavoriteTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C294F1562767F3DD005AEDFD /* FavoriteTileView.swift */; };
@@ -102,6 +103,7 @@
 		BDB415AB27630B1100535176 /* MapSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearch.swift; sourceTree = "<group>"; };
 		BDB415AD2766ED9D00535176 /* MarketSquareBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketSquareBaseView.swift; sourceTree = "<group>"; };
 		BDB415B12767AC8D00535176 /* SellerFromCoordResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerFromCoordResult.swift; sourceTree = "<group>"; };
+		C266C90F276A9928000BA2CE /* Snowfall.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Snowfall.sks; sourceTree = "<group>"; };
 		C2720287276A6EC2002F5A79 /* HolidayWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayWrapperView.swift; sourceTree = "<group>"; };
 		C294F1522767F221005AEDFD /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		C294F1562767F3DD005AEDFD /* FavoriteTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTileView.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				C294F15A27698192005AEDFD /* Utilities.swift */,
 				C2C2715E276A52D40037DBE9 /* SnowfallView.swift */,
 				C2720287276A6EC2002F5A79 /* HolidayWrapperView.swift */,
+				C266C90F276A9928000BA2CE /* Snowfall.sks */,
 			);
 			path = KVMarketSquare;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 			files = (
 				BD1E5CF2275B2146009587A2 /* Preview Assets.xcassets in Resources */,
 				6C70F5152767E01D00884777 /* Localizable.strings in Resources */,
+				C266C910276A9928000BA2CE /* Snowfall.sks in Resources */,
 				6C1E7D26276937E60083293D /* Launch Screen.storyboard in Resources */,
 				BD1E5CEF275B2146009587A2 /* Assets.xcassets in Resources */,
 			);

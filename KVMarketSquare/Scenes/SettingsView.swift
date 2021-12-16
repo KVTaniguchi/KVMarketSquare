@@ -12,7 +12,7 @@ struct SettingsView: View {
     var utilities = Utilities()
     
     var body: some View {
-        HolidayWrapperView {
+        HolidayWrapperView(content: {
             List {
                 Section(header: Text(Localization.key(.SettingsViewThemeTitle))) {
                     SettingsSectionView(title: Localization.key(.SettingsThemeSystemTitle), description: Localization.key(.SettingsThemeSystemDescription)) {
@@ -34,6 +34,9 @@ struct SettingsView: View {
                     }
                     SettingsSectionView(title: Localization.key(.SettingsThemeSnowTitle), description: Localization.key(.SettingsThemeSnowDescription)) {
                         Toggle(isOn: $appData.isLettingItSnow) {}
+                        .onChange(of: appData.isLettingItSnow) { shouldSnow in
+                            appData.snowScene = BetterSnowFall()
+                        }
                         .tint(.green)
                     }
                 }
@@ -41,7 +44,7 @@ struct SettingsView: View {
             .onChange(of: appData.userInterfaceStyle, perform: { value in
                 utilities.overrideDisplayMode(appData.userInterfaceStyle)
             })
-        }
+        }, scene: appData.snowScene)
     }
     
     private func setUserInterfaceStyle() {

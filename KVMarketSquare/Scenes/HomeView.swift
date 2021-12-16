@@ -12,7 +12,7 @@ struct HomeView: View {
     @State private var showingSearchSheet = false
     
     var body: some View {
-        HolidayWrapperView {
+        HolidayWrapperView(content: {
             contentView
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -30,7 +30,7 @@ struct HomeView: View {
             .fullScreenCover(isPresented: $showingSearchSheet) {
                 SearchView() { _ in }.environmentObject(appData)
             }
-        }
+        }, scene: appData.snowScene)
     }
     
     private var contentView: some View {
