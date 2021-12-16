@@ -11,7 +11,6 @@ extension View {
     func addNavigationView(title: String) -> some View {
         NavigationView {
             self
-                .navigationBarTitleDisplayMode(.inline)
                 .navigationTitle(title)
         }
     }

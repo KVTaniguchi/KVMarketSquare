@@ -33,6 +33,10 @@ enum Localization: String {
     // Search
     case SearchViewTitle, SearchFieldTitle
     
+    // StoreDetail
+    case OpenInBrowser, ServiceSectionTitle
+    case ServiceDevlieryTitle, ServicePickupTitle, ServiceCurbesideTitle, ServiceScheduleTitle, ServicePreparedTitle
+    
     // Settings
     case SettingsViewThemeTitle, SettingsThemeSystemTitle, SettingsThemeSystemDescription, SettingsThemeDarkModeTitle, SettingsThemeDarkModeDescription, SettingsThemeSnowTitle, SettingsThemeSnowDescription
 

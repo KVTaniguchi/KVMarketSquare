@@ -4,7 +4,9 @@ struct StoreWebView: View {
     let store: SellerAppData
     @StateObject var task = PostTask<URLStoresResponse>()
     @Environment(\.dismiss) var dismiss
+    @State private var actualURL: URL?
     private let request: URLRequest
+    
     
     // start fetching on init
     init?(store: SellerAppData) {
@@ -24,6 +26,7 @@ struct StoreWebView: View {
         }
         
         self.request = request
+        self.actualURL = nil
     }
     
     var body: some View {
@@ -55,7 +58,14 @@ struct StoreWebView: View {
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    FavoriteButton(sellerStore: store)
+                    // Todo: add better logic here to open website in browser
+                    if let actualUrl = actualURL {
+                        Link(destination: actualUrl) {
+                            Text(Localization.key(.OpenInBrowser))
+                                .font(.caption2)
+                                .foregroundColor(.blue)
+                        }
+                    }
                 }
             }
         }

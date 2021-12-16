@@ -10,7 +10,6 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject private var appData: AppData
     @State private var showingSearchSheet = false
-    @State private var selectedStore: SellerAppData?
     
     var body: some View {
         HolidayWrapperView {
@@ -61,11 +60,12 @@ struct HomeView: View {
         List {
             Section {
                 ForEach(Array(appData.favoriteShops)) { store in
-                    Button {
-                        selectedStore = store
+                    NavigationLink {
+                        StoreDetailView(store: store)
                     } label: {
                         FavoriteTileView(store: store)
                     }
+
                 }
                 .onDelete { offsets in
                     appData.favoriteShops.delete(at: offsets)
@@ -78,9 +78,6 @@ struct HomeView: View {
                     .bold()
                     .textCase(.none)
             }
-        }
-        .fullScreenCover(item: $selectedStore) { store in
-            StoreWebView(store: store)
         }
     }
 }
