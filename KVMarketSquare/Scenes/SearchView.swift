@@ -110,7 +110,7 @@ enum SearchCategoryFilters: String, CaseIterable {
     case artsAndCrafts = "Arts & Crafts"
     
     func button(fetcher: SellerMultiSearchFetcher, selectedFilter: Binding<SearchCategoryFilters>) -> some View {
-        let isSelected = self == selectedFilter.wrappedValue
+        let isSelected = selectedFilter.wrappedValue == self
         
         return Button {
             selectedFilter.wrappedValue = self
