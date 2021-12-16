@@ -13,43 +13,45 @@ struct StoreDetailView: View {
     var store: SellerAppData
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: 32) {
-                basicInfoSection
-                
-                StoreServiceSection(store: store)
-                    .padding(16)
-                    .background(Color.key(.background))
-                    .cornerRadius(10)
-                
-                // Add Map Info Here
+        HolidayWrapperView {
+            ScrollView {
+                VStack(spacing: 32) {
+                    basicInfoSection
+                    
+                    StoreServiceSection(store: store)
+                        .padding(16)
+                        .background(Color.key(.background))
+                        .cornerRadius(10)
+                    
+                    // Add Map Info Here
+                }
             }
-        }
-        .navigationTitle(store.displayName ?? "")
-        .navigationBarBackButtonHidden(true)
-        .padding(.horizontal, 16)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                NavBackButton()
-            }
-
-            ToolbarItem(placement: .navigationBarTrailing) {
-                FavoriteButton(sellerStore: store)
-            }
-            
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    showWebView.toggle()
-                } label: {
-                    Image(systemName: "globe")
-                        .renderingMode(.template)
-                        .tint(.blue)
+            .navigationTitle(store.displayName ?? "")
+            .navigationBarBackButtonHidden(true)
+            .padding(.horizontal, 16)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    NavBackButton()
                 }
 
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    FavoriteButton(sellerStore: store)
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        showWebView.toggle()
+                    } label: {
+                        Image(systemName: "globe")
+                            .renderingMode(.template)
+                            .tint(.blue)
+                    }
+
+                }
             }
-        }
-        .fullScreenCover(isPresented: $showWebView) {
-            StoreWebView(store: store)
+            .fullScreenCover(isPresented: $showWebView) {
+                StoreWebView(store: store)
+            }
         }
     }
     

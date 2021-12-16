@@ -25,8 +25,8 @@ struct SnowfallView: UIViewRepresentable {
         snowflakeCell.velocity = -30.0
         snowflakeCell.velocityRange = -20.0
         snowflakeCell.yAcceleration = 30.0
-        snowflakeCell.xAcceleration = 5.0
-        snowflakeCell.spin = -5.0
+        snowflakeCell.xAcceleration = 2.0
+        snowflakeCell.spin = -2.0
         snowflakeCell.spinRange = 1.0
         
         let snowfallLayer = CAEmitterLayer()

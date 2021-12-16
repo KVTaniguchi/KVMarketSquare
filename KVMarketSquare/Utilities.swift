@@ -20,7 +20,12 @@ class Utilities {
         } else {
             userInterfaceStyle = .unspecified
         }
-        UIApplication.shared.keyWindow?.overrideUserInterfaceStyle =  userInterfaceStyle
+        
+        if let window = UIApplication.shared.connectedScenes.flatMap({ ($0 as? UIWindowScene)?.windows ?? [] }).first(where: { $0.isKeyWindow }) {
+            UIView.transition (with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
+                window.overrideUserInterfaceStyle = userInterfaceStyle
+            }, completion: nil)
+        }
     }
 }
 
