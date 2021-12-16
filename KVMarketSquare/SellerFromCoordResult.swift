@@ -72,6 +72,44 @@ struct Datum: Codable, Identifiable {
         case url, timestamp
         case geodist = "geodist()"
     }
+    
+    static var preview = Datum(
+        id: "",
+        ownerID: "",
+        siteID: "",
+        addressID: nil,
+        nickname: nil,
+        displayName: "",
+        businessName: "",
+        siteTitle: "",
+        sellerType: .retail,
+        pickupEnabled: "",
+        preparedStatusEnabled: "",
+        orderPrepTime: nil,
+        schedulePickupEnabled: "",
+        lastOrderDate: "",
+        isSquareLocation: 0,
+        pickupInstructions: nil,
+        deliveryEnabled: "",
+        deliveryFee: nil,
+        deliveryOrderSubtotalMinimum: nil,
+        deliveryEstimatedMinDurationMinutes: nil,
+        deliveryEstimatedMaxDurationMinutes: nil,
+        curbsidePickupEnabled: "",
+        street: "",
+        street2: "",
+        postalCode: "",
+        city: "",
+        region: "",
+        countryCode: .us,
+        phone: nil,
+        email: nil,
+        storeLatLon: "",
+        partnerSeller: "",
+        url: nil,
+        timestamp: "",
+        geodist: 0
+    )
 }
 
 enum CountryCode: String, Codable {

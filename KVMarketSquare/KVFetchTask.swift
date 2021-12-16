@@ -11,32 +11,48 @@ struct SellerSearchResultViewModel: Identifiable {
     let displayName: String
     let userId: String
     let siteId: String
+    let pickupEnabled: String
+    let preparedStatusEnabled: String
+    let schedulePickupEnabled: String
+    let deliveryEnabled: String
+    let curbsidePickupEnabled: String
+    let street: String
+    let street2: String
     let city: String
+    let postalCode: String
+    let region: String
+    let countryCode: CountryCode
+    let phone: String?
+    let email: String?
     let sellerType: SellerType
     var businessType: String?
+    let giftCardBusinessType: String?
     var merchantLogoURL: URL?
     var merchantURL: URL?
     var id: String
     
-    init(
-     displayName: String,
-     userId: String,
-     siteId: String,
-     city: String,
-     sellerType: SellerType,
-     businessType: String? = nil,
-     merchantLogoURL: URL? = nil,
-     merchantURL: URL? = nil
-    ) {
-        self.displayName = displayName
-        self.userId = userId
-        self.siteId = siteId
-        self.city = city
-        self.sellerType = sellerType
-        self.businessType = businessType
-        self.merchantLogoURL = merchantLogoURL
-        self.merchantURL = merchantURL
-        self.id = [displayName, userId, siteId].joined(separator: "-")
+    init(store: Datum) {
+        self.siteId = store.siteID
+        self.userId = store.ownerID
+        self.pickupEnabled = store.pickupEnabled
+        self.preparedStatusEnabled = store.preparedStatusEnabled
+        self.schedulePickupEnabled = store.schedulePickupEnabled
+        self.deliveryEnabled = store.deliveryEnabled
+        self.curbsidePickupEnabled = store.curbsidePickupEnabled
+        self.street = store.street
+        self.street2 = store.street2
+        self.city = store.city
+        self.postalCode = store.postalCode
+        self.region = store.region
+        self.countryCode = store.countryCode
+        self.phone = store.phone
+        self.email = store.email
+        self.displayName = store.displayName
+        self.id = store.ownerID
+        self.merchantLogoURL = nil
+        self.giftCardBusinessType = nil
+        self.sellerType = store.sellerType
+        self.id = [store.displayName, store.ownerID, store.siteID].joined(separator: "-")
     }
 }
 
@@ -115,7 +131,7 @@ class SellerMultiSearchFetcher: ObservableObject {
             }
         }, receiveValue: { [weak self] mapResult, giftCardResult in
             // we build using just the seller-map api results b/c we use the user id / site id for store url searching
-            let mapResults = mapResult.data.map { SellerSearchResultViewModel(displayName: $0.displayName, userId: $0.ownerID, siteId: $0.siteID, city: $0.city, sellerType: $0.sellerType) }
+            let mapResults = mapResult.data.map { SellerSearchResultViewModel(store: $0) }
             
             var profilesByName = [String: UnitProfile]()
             for profile in giftCardResult.unitProfiles {

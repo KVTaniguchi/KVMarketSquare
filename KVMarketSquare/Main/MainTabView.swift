@@ -23,6 +23,6 @@ struct MainTabView: View {
                     Text(Localization.key(.TabSettingsTitle))
                 }.tag(1)
         }
-        .tint(Color("TintColor"))
+        .tint(Color.key(.tint))
     }
 }

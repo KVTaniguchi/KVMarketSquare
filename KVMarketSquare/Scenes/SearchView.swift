@@ -161,25 +161,9 @@ struct SellerResultsListView: View {
             case .success(let models):
                 List(models) { model in
                     Button {
-                        selectedStore = SellerAppData(
-                            siteId: model.siteId,
-                            userId: model.userId,
-                            city: model.city,
-                            displayName: model.displayName,
-                            merchantLogoURL: model.merchantLogoURL,
-                            giftCardBusinessType: model.businessType,
-                            sellerType: model.sellerType
-                        )
+                        selectedStore = SellerAppData(store: model)
                     } label: {
-                        FavoriteTileView(store: SellerAppData(
-                            siteId: model.siteId,
-                            userId: model.userId,
-                            city: model.city,
-                            displayName: model.displayName,
-                            merchantLogoURL: model.merchantLogoURL,
-                            giftCardBusinessType: model.businessType,
-                            sellerType: model.sellerType
-                        ))
+                        FavoriteTileView(store: SellerAppData(store: model))
                         // todo implement paging by inserting a view somewhere in list whose appearance triggers another page
                         // track how many pages we have done
                     }
