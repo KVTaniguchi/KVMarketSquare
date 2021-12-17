@@ -14,6 +14,7 @@
 		6C1E7D2F276B8F260083293D /* StoreDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1E7D2E276B8F260083293D /* StoreDetailView.swift */; };
 		6C1E7D33276B949D0083293D /* IconHeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1E7D32276B949D0083293D /* IconHeaderText.swift */; };
 		6C1E7D35276B9C3C0083293D /* StoreServiceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1E7D34276B9C3C0083293D /* StoreServiceSection.swift */; };
+		6C1E7D37276C3DC00083293D /* StoreMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1E7D36276C3DC00083293D /* StoreMapView.swift */; };
 		6C70F5072767CC1000884777 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C70F5062767CC1000884777 /* HomeView.swift */; };
 		6C70F5092767CC3200884777 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C70F5082767CC3200884777 /* SettingsView.swift */; };
 		6C70F50C2767CDAF00884777 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C70F50B2767CDAF00884777 /* View.swift */; };
@@ -75,6 +76,7 @@
 		6C1E7D2E276B8F260083293D /* StoreDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailView.swift; sourceTree = "<group>"; };
 		6C1E7D32276B949D0083293D /* IconHeaderText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconHeaderText.swift; sourceTree = "<group>"; };
 		6C1E7D34276B9C3C0083293D /* StoreServiceSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreServiceSection.swift; sourceTree = "<group>"; };
+		6C1E7D36276C3DC00083293D /* StoreMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreMapView.swift; sourceTree = "<group>"; };
 		6C70F5062767CC1000884777 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		6C70F5082767CC3200884777 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		6C70F50B2767CDAF00884777 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = View.swift; path = ../View.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				6C1E7D34276B9C3C0083293D /* StoreServiceSection.swift */,
 				71B6124A276BF19E008BFA86 /* ClearButton.swift */,
 				71B6124C276BF1F2008BFA86 /* MapView.swift */,
+				6C1E7D36276C3DC00083293D /* StoreMapView.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -467,6 +470,7 @@
 				71B61250276BF23A008BFA86 /* AddressToCoordinateResolver.swift in Sources */,
 				BD1E5CEB275B2141009587A2 /* KVMarketSquareApp.swift in Sources */,
 				6C9322362767C73300D92BD8 /* MainTabView.swift in Sources */,
+				6C1E7D37276C3DC00083293D /* StoreMapView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

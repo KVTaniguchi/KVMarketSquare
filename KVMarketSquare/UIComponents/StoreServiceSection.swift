@@ -56,14 +56,13 @@ struct StoreServiceSection: View {
             ForEach(StoreServiceType.allCases, id: \.self) { type in
                 HStack {
                     Text("● \(type.title)")
-                        .frame(width: UIScreen.main.bounds.width * 0.4, alignment: .leading)
+                    
+                    Spacer()
                     
                     type.enabledIcon(store: store)
                         .resizable()
                         .renderingMode(.template)
                         .frame(width: 16, height: 16)
-                    
-                    Spacer()
                 }
             }
         }
