@@ -121,7 +121,7 @@ struct SellerResultsListView: View {
                                 filterType.button(fetcher: multiSearch, selectedFilter: $selectedFilter)
                             }
                         }
-                    }
+                    }.padding(.horizontal, 16)
                     
                     List(models) { model in
                         Button {

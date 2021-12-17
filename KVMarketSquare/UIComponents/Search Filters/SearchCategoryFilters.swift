@@ -27,9 +27,15 @@ enum SearchCategoryFilters: String, CaseIterable {
             selectedFilter.wrappedValue = self
             fetcher.filterResults(with: self)
         } label: {
-            Text(self.rawValue).padding(4).border(isSelected ? .primary : .secondary, width: isSelected ? 4 : 1)
+            Text(self.rawValue)
+                .padding(8)
+                .foregroundColor(isSelected ? .blue : .secondary)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(isSelected ? .blue : .secondary, lineWidth: isSelected ? 4 : 2))
         }
-        .contentShape(Rectangle())
+        .border(isSelected ? .blue : .secondary)
+        .cornerRadius(8)
     }
     
     static func availableCases(for results: [SellerSearchResultViewModel]) -> [SearchCategoryFilters] {
