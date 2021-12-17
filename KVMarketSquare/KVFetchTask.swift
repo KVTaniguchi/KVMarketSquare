@@ -57,13 +57,50 @@ struct SellerSearchResultViewModel: Identifiable {
 }
 
 class SellerMultiSearchFetcher: ObservableObject {
-    // fetch task
-    // post task
     private var cancellable: AnyCancellable?
     
     @Published var results: Result<[SellerSearchResultViewModel], Error>?
+    var allModels: [SellerSearchResultViewModel] = []
     
     private var currentPage = 0 // on finish, bump page
+    
+    func filterResults(with category: SearchCategoryFilters) {        
+        
+        var filteredModels: [SellerSearchResultViewModel]
+        switch category {
+        case .all:
+            self.results = .success(allModels)
+            return
+        case .food:
+            filteredModels = allModels.filter({ model in
+                model.businessType == "food_truck_cart" ||
+                model.businessType == "grocery_market" ||
+                model.businessType == "food_stores_convenience_stores_and_specialty_markets" ||
+                model.businessType == "restaurant" ||
+                model.businessType == "coffee_tea_shop" ||
+                model.businessType == "bakery" ||
+                model.sellerType == .foodAndDrink
+            })
+        case .retail:
+            filteredModels = allModels.filter { $0.businessType == "clothing_and_accessories" || $0.sellerType == .retail }
+        case .restaurants:
+            filteredModels = allModels.filter { $0.businessType == "restaurant" }
+        case .coffeeAndTea:
+            filteredModels = allModels.filter { $0.businessType == "coffee_tea_shop" }
+        case .barClubLounge:
+            filteredModels = allModels.filter { $0.businessType == "bar_club_lounge" }
+        case .bakery:
+            filteredModels = allModels.filter { $0.businessType == "bakery" }
+        case .beautyAndBarber:
+            filteredModels = allModels.filter { $0.businessType == "beauty_and_barber_shops" }
+        case .medical:
+            filteredModels = allModels.filter { $0.businessType == "medical_services_and_health_practitioners" }
+        case .artsAndCrafts:
+            filteredModels = allModels.filter { $0.businessType == "artists_supply_and_craft_shops" }
+        }
+        
+        self.results = .success(filteredModels)
+    }
     
     func search(coordinate : CLLocationCoordinate2D) {
         // make seller-map url
@@ -149,7 +186,7 @@ class SellerMultiSearchFetcher: ObservableObject {
                 
                 return tempResult
             }
-            
+            self?.allModels = updatedResults
             self?.results = .success(updatedResults)
         })
     }

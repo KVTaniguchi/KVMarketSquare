@@ -17,7 +17,8 @@ struct Datum: Codable, Identifiable {
     let id, ownerID, siteID: String
     let addressID: Int?
     let nickname: String?
-    let displayName, businessName, siteTitle: String
+    let displayName, siteTitle: String
+    let businessName: String?
     let sellerType: SellerType
     let pickupEnabled, preparedStatusEnabled: String
     let orderPrepTime: Int?
@@ -80,8 +81,8 @@ struct Datum: Codable, Identifiable {
         addressID: nil,
         nickname: nil,
         displayName: "",
-        businessName: "",
         siteTitle: "",
+        businessName: "",
         sellerType: .retail,
         pickupEnabled: "",
         preparedStatusEnabled: "",

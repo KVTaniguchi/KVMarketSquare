@@ -98,33 +98,15 @@ struct SellerSearchResultsView: View {
 }
 
 struct SellerResultsListView: View {
-    @StateObject var task: FetchTask<SellerFromCoordsResult> = FetchTask<SellerFromCoordsResult>()
     @EnvironmentObject private var appData: AppData
     @State private var selectedStore: SellerAppData?
+    @State private var selectedFilter: SearchCategoryFilters = .all
     
     @StateObject var multiSearch: SellerMultiSearchFetcher = SellerMultiSearchFetcher()
     
-    private let url: URL
     private let coordinate: CLLocationCoordinate2D
     
     init?(coordinate : CLLocationCoordinate2D) {
-        // todo implement paging
-        //    'https://www.weebly.com/app/store/api/v1/seller-map/lat/{lat}/lng/{lng}?page=0&per_page=100'
-        var sellerMapComponents = URLComponents()
-            sellerMapComponents.scheme = "https"
-            sellerMapComponents.host = "weebly.com"
-            sellerMapComponents.path = "/app/store/api/v1/seller-map/lat/\(coordinate.latitude)/lng/\(coordinate.longitude)"
-            sellerMapComponents.queryItems = [
-                URLQueryItem(name: "page", value: "\(0)"), // not gonna care about this now
-                URLQueryItem(name: "per_page", value: "\(120)")
-            ]
-        
-        guard let url = sellerMapComponents.url else {
-            assertionFailure("no url")
-            return nil
-        }
-        
-        self.url = url
         self.coordinate = coordinate
     }
     
@@ -132,13 +114,21 @@ struct SellerResultsListView: View {
         Group {
             switch multiSearch.results {
             case .success(let models):
-                List(models) { model in
-                    Button {
-                        selectedStore = SellerAppData(store: model)
-                    } label: {
-                        FavoriteTileView(store: SellerAppData(store: model))
-                        // todo implement paging by inserting a view somewhere in list whose appearance triggers another page
-                        // track how many pages we have done
+                VStack {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 4) {
+                            ForEach(SearchCategoryFilters.availableCases(for: multiSearch.allModels), id: \.self) { filterType in
+                                filterType.button(fetcher: multiSearch, selectedFilter: $selectedFilter)
+                            }
+                        }
+                    }
+                    
+                    List(models) { model in
+                        Button {
+                            selectedStore = SellerAppData(store: model)
+                        } label: {
+                            FavoriteTileView(store: SellerAppData(store: model))
+                        }
                     }
                 }
             case .failure(let error):
@@ -147,7 +137,6 @@ struct SellerResultsListView: View {
                 ProgressView().onAppear(perform: {
                     withAnimation {
                         self.multiSearch.search(coordinate: self.coordinate)
-
                     }
                 })
             }
