@@ -35,6 +35,7 @@ struct SellerAppData: Identifiable, Hashable, Codable {
     let countryCode: CountryCode
     let phone: String?
     let email: String?
+    let storeLatLon: String
     let displayName: String?
     let merchantLogoURL: URL?
     let giftCardBusinessType: String?
@@ -57,6 +58,7 @@ struct SellerAppData: Identifiable, Hashable, Codable {
         self.countryCode = store.countryCode
         self.phone = store.phone
         self.email = store.email
+        self.storeLatLon = store.storeLatLon
         self.displayName = store.displayName
         self.id = store.userId
         self.merchantLogoURL = store.merchantLogoURL

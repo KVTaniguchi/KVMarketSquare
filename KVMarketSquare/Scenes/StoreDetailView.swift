@@ -14,23 +14,23 @@ struct StoreDetailView: View {
     
     var body: some View {
         HolidayWrapperView {
-            VStack(alignment: .leading) {
-                Text(store.displayName ?? "").font(.largeTitle)
-                ScrollView {
-                    VStack(spacing: 32) {
-                        basicInfoSection
-                        
-                        StoreServiceSection(store: store)
-                            .padding(16)
-                            .background(Color.key(.background))
-                            .cornerRadius(10)
-                        
-                        // Add Map Info Here
-                    }
+            ScrollView {
+                VStack(spacing: 16) {
+                    titleSection
+                    
+                    basicInfoSection
+                    
+                    StoreServiceSection(store: store)
+                        .padding(16)
+                        .background(Color.key(.background))
+                        .cornerRadius(10)
+                    
+                    StoreMapView(store: store)
                 }
+                .padding(.horizontal, 16)
             }
+            .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(true)
-            .padding(.horizontal, 16)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     NavBackButton()
@@ -57,16 +57,33 @@ struct StoreDetailView: View {
         }
     }
     
-    private var basicInfoSection: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(store.addressString)
-            
-            if let phone = store.phone, !phone.isEmpty {
-                IconHeaderText(type: .phone, text: phone)
+    private var titleSection: some View {
+        HStack(spacing: 4) {
+            if let logoImage = KVAsyncImage(url: store.merchantLogoURL) {
+                logoImage
+                    .frame(width: 72, height: 72)
             }
             
-            if let email = store.email {
-                IconHeaderText(type: .email, text: email)
+            Text(store.displayName ?? "")
+                .font(.largeTitle)
+                .bold()
+            
+            Spacer()
+        }
+    }
+    
+    private var basicInfoSection: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            IconHeaderText(type: .address, text: store.addressString)
+            
+            HStack {
+                if let phone = store.phone, !phone.isEmpty {
+                    IconHeaderText(type: .phone, text: phone)
+                }
+                
+                if let email = store.email, !email.isEmpty {
+                    IconHeaderText(type: .email, text: email)
+                }
             }
         }
         .horizontalAlignment(.leading)

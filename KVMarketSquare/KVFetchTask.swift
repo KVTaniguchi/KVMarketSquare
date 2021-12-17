@@ -24,6 +24,7 @@ struct SellerSearchResultViewModel: Identifiable {
     let countryCode: CountryCode
     let phone: String?
     let email: String?
+    let storeLatLon: String
     let sellerType: SellerType
     var businessType: String?
     let giftCardBusinessType: String?
@@ -47,6 +48,7 @@ struct SellerSearchResultViewModel: Identifiable {
         self.countryCode = store.countryCode
         self.phone = store.phone
         self.email = store.email
+        self.storeLatLon = store.storeLatLon
         self.displayName = store.displayName
         self.id = store.ownerID
         self.merchantLogoURL = nil
