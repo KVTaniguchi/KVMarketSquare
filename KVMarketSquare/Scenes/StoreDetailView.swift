@@ -14,19 +14,21 @@ struct StoreDetailView: View {
     
     var body: some View {
         HolidayWrapperView {
-            ScrollView {
-                VStack(spacing: 32) {
-                    basicInfoSection
-                    
-                    StoreServiceSection(store: store)
-                        .padding(16)
-                        .background(Color.key(.background))
-                        .cornerRadius(10)
-                    
-                    // Add Map Info Here
+            VStack(alignment: .leading) {
+                Text(store.displayName ?? "").font(.largeTitle)
+                ScrollView {
+                    VStack(spacing: 32) {
+                        basicInfoSection
+                        
+                        StoreServiceSection(store: store)
+                            .padding(16)
+                            .background(Color.key(.background))
+                            .cornerRadius(10)
+                        
+                        // Add Map Info Here
+                    }
                 }
             }
-            .navigationTitle(store.displayName ?? "")
             .navigationBarBackButtonHidden(true)
             .padding(.horizontal, 16)
             .toolbar {
