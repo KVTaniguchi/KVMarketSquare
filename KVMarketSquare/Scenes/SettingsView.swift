@@ -14,7 +14,10 @@ struct SettingsView: View {
     var body: some View {
         HolidayWrapperView(content: {
             List {
-                Section(header: Text(Localization.key(.SettingsViewThemeTitle))) {
+                Section(header: Text(Localization.key(.SettingsViewThemeTitle))
+                            .font(.body)
+                            .bold()
+                            .textCase(.none)) {
                     SettingsSectionView(title: Localization.key(.SettingsThemeSystemTitle), description: Localization.key(.SettingsThemeSystemDescription)) {
                         Toggle(isOn: $appData.isAutomaticColorScheme) {}
                         .onChange(of: appData.isAutomaticColorScheme) { _ in
