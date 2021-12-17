@@ -127,7 +127,12 @@ struct SellerResultsListView: View {
                         Button {
                             selectedStore = SellerAppData(store: model)
                         } label: {
-                            FavoriteTileView(store: SellerAppData(store: model))
+                            HStack {
+                                FavoriteTileView(store: SellerAppData(store: model)).environmentObject(appData)
+                                if appData.favoriteShops.contains(SellerAppData(store: model)) {
+                                    Image(systemName: "heart.fill")
+                                }
+                            }
                         }
                     }
                 }
